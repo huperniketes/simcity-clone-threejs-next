@@ -236,8 +236,3 @@ export class Game {
     this.renderer.setSize(window.ui.gameWindow.clientWidth, window.ui.gameWindow.clientHeight);
   }
 }
-
-// Create a new game when the window is loaded
-window.onload = () => {
-  window.game = new Game();
-}
