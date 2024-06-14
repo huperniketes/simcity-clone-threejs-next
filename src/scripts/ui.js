@@ -1,7 +1,6 @@
-import { Game } from './game';
-import { SimObject } from './sim/simObject';
-import playIconUrl from '/icons/play-color.png';
-import pauseIconUrl from '/icons/pause-color.png';
+
+const playIconUrl = '/icons/play-color.png';
+const pauseIconUrl = '/icons/pause-color.png';
 
 export class GameUI {
   /**
@@ -88,5 +87,3 @@ export class GameUI {
     }
   }
 }
-
-window.ui = new GameUI();
