@@ -106,31 +106,8 @@ SimGame()
           <span id="population-counter">0</span>
         </div>
       </div>
+      <ToolMenu />
       <div id="ui-toolbar" className="container">
-        <button id='button-select' className="ui-button selected" data-type="select" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSselect} />
-        </button>
-        <button id='button-bulldoze' className="ui-button" data-type="bulldoze" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSbulldozer} />
-        </button>
-        <button id='button-residential' className="ui-button" data-type="residential" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBShouse} />
-        </button>
-        <button id='button-commercial' className="ui-button" data-type="commercial" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSstore} />
-        </button>
-        <button id='button-industrial' className="ui-button" data-type="industrial" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSfactory} />
-        </button>
-        <button id='button-road' className="ui-button" data-type="road" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSroad} />
-        </button>
-        <button id='button-power-plant' className="ui-button" data-type="power-plant" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSpower} />
-        </button>
-        <button id='button-power-line' className="ui-button" data-type="power-line" onClick={ui.onToolSelected} >
-          <Image className="toolbar-icon" height={20} width={20} src={nextBSpowerLine} />
-        </button>
         <button id='button-pause' className="ui-button" onClick={ui.togglePause()} >
           <Image id='pause-button-icon' className="toolbar-icon" height={20} width={20} src={nextBSpause} />
         </button>
