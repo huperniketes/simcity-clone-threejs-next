@@ -5,6 +5,10 @@ import { Game } from "~/scripts/game"
 import { GameUI } from "~/scripts/ui";
 import { SimObject } from '~/scripts/sim/simObject.js';
 
+import {
+  useState
+} from "react";
+
 import Image from "next/image"
 import nextBSperson from "../public/icons/person.png";
 import nextBSselect from "../public/icons/select-color.png";
@@ -18,6 +22,57 @@ import nextBSpowerLine from "../public/icons/power-line-color.png";
 import nextBSpause from "../public/icons/pause-color.png";
 
   const ui = new GameUI()
+
+function
+selectMenuItem(event)
+{
+  
+}
+
+/**
+ * Builds a menu item component based on the parameters
+ * @param {string} type
+ * @param {StaticImport} imgSource
+ */
+function
+MenuItem(type, imgSource)
+{
+  const [isSelected, setSelected] = useState(false);
+
+  return  (
+    <>
+    <button id={`button-${type}`} className={"ui-button" + isSelected ? "selected" : ""} data-type={type} onClick={setSelected} >
+      <Image className="toolbar-icon" height={20} width={20} src={imgSource} alt={type} />
+    </button>
+    </>
+  );
+}
+
+const
+gameMenuItems = [
+  { type: "select",      imgSource: nextBSselect    },
+  { type: "bulldoze",    imgSource: nextBSbulldozer },
+  { type: "residential", imgSource: nextBShouse     },
+  { type: "commercial",  imgSource: nextBSstore     },
+  { type: "industrial",  imgSource: nextBSfactory   },
+  { type: "road",        imgSource: nextBSroad      },
+  { type: "power-plant", imgSource: nextBSpower     },
+  { type: "power-line",  imgSource: nextBSpowerLine }
+];
+
+function
+ToolMenu()
+{
+  return  (
+    <>
+      <div id="ui-toolbar" className="container">
+        {gameMenuItems.map(i => (
+          MenuItem(i.type, i.imgSource)
+        ))}
+      </div>
+    </>
+  );
+}
 
 function
 SimGame()
