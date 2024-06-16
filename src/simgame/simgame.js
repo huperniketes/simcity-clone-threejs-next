@@ -4,6 +4,7 @@
 import { Game } from "~/scripts/game"
 import { GameUI } from "~/scripts/ui";
 import { SimObject } from '~/scripts/sim/simObject.js';
+import "../public/main.css";
 
 import {
   useState
