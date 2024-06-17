@@ -22,7 +22,7 @@ import nextBSpower from "../public/icons/power-color.png";
 import nextBSpowerLine from "../public/icons/power-line-color.png";
 import nextBSpause from "../public/icons/pause-color.png";
 
-  const ui = new GameUI()
+const ui = new GameUI()
 
 function
 selectMenuItem(event)
@@ -66,11 +66,9 @@ ToolMenu()
 {
   return  (
     <>
-      <div id="ui-toolbar" className="container">
-        {gameMenuItems.map(i => (
-          MenuItem(i.type, i.imgSource)
-        ))}
-      </div>
+      {gameMenuItems.map(i => (
+        MenuItem(i.type, i.imgSource)
+      ))}
     </>
   );
 }
@@ -107,13 +105,13 @@ SimGame()
           <span id="population-counter">0</span>
         </div>
       </div>
-      <ToolMenu />
-      <div id="ui-toolbar" className="container">
+      <div id="ui-toolbar" className="container" >
+        <ToolMenu />
         <button id='button-pause' className="ui-button" onClick={ui.togglePause()} >
           <Image id='pause-button-icon' className="toolbar-icon" height={20} width={20} src={nextBSpause} />
         </button>
       </div>
-      <div id="info-panel" className="container">
+      <div id="info-panel" className="container" >
       </div>
       <div id="instructions">
         <p>INTERACT - Left Mouse</p>
