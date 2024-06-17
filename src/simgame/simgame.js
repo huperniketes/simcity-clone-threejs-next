@@ -40,9 +40,15 @@ MenuItem(type, imgSource)
 {
   const [isSelected, setSelected] = useState(false);
 
+  function
+  itemSelected()
+  {
+    setSelected(true);
+  }
+
   return  (
     <>
-    <button id={`button-${type}`} className={"ui-button" + (isSelected ? " selected" : "")} data-type={type} onClick={setSelected} >
+    <button id={`button-${type}`} className={"ui-button" + (isSelected ? " selected" : "")} data-type={type} onClick={itemSelected} >
       <Image className="toolbar-icon" height={32} width={32} src={imgSource} alt={type} />
     </button>
     </>
