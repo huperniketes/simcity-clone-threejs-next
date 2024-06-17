@@ -34,9 +34,12 @@ selectMenuItem(event)
  * Builds a menu item component based on the parameters
  * @param {string} type
  * @param {StaticImport} imgSource
+ * @param {boolean} isSelected
+ * @param {MouseEventHandler} aParentFunction
+ * @returns {JSX.Element}
  */
 function
-MenuItem(type, imgSource)
+MenuItem(type, imgSource, isSelected, aParentFunction)
 {
   const [isSelected, setSelected] = useState(false);
 
@@ -48,7 +51,7 @@ MenuItem(type, imgSource)
 
   return  (
     <>
-    <button id={`button-${type}`} className={"ui-button" + (isSelected ? " selected" : "")} data-type={type} onClick={itemSelected} >
+    <button id={`button-${type}`} className={"ui-button" + (isSelected ? " selected" : "")} data-type={type} onClick={e => aParentFunction(e)} >
       <Image className="toolbar-icon" height={32} width={32} src={imgSource} alt={type} />
     </button>
     </>
@@ -70,10 +73,20 @@ gameMenuItems = [
 function
 ToolMenu()
 {
+  const [selectedTool, setSelectedTool] = useState("");
+
+  function
+  tellMe(e)
+  {
+    
+    e.preventDefault();
+    setSelectedTool(e.target.dataset.type);
+  }
+
   return  (
     <>
       {gameMenuItems.map(i => (
-        MenuItem(i.type, i.imgSource)
+        MenuItem(i.type, i.imgSource, i.type === selectedTool, tellMe)
       ))}
     </>
   );
