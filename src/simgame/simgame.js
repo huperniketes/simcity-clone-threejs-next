@@ -43,7 +43,7 @@ MenuItem(type, imgSource)
   return  (
     <>
     <button id={`button-${type}`} className={"ui-button" + (isSelected ? " selected" : "")} data-type={type} onClick={setSelected} >
-      <Image className="toolbar-icon" height={20} width={20} src={imgSource} alt={type} />
+      <Image className="toolbar-icon" height={32} width={32} src={imgSource} alt={type} />
     </button>
     </>
   );
