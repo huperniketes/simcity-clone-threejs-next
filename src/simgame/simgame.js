@@ -73,7 +73,7 @@ gameMenuItems = [
 function
 ToolMenu()
 {
-  const [selectedTool, setSelectedTool] = useState("");
+  const [selectedTool, setSelectedTool] = useState("select");
 
   function
   tellMe(e)
