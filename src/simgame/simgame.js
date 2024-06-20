@@ -85,9 +85,13 @@ ToolMenu()
 
   return  (
     <>
+      <ul>
       {gameMenuItems.map(i => (
-        MenuItem(i.type, i.imgSource, i.type === selectedTool, tellMe)
+        <li key={i.type} >
+          {MenuItem(i.type, i.imgSource, i.type === selectedTool, tellMe)}
+        </li>
       ))}
+      </ul>
     </>
   );
 }
