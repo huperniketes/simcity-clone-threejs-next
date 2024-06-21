@@ -24,8 +24,6 @@ import nextBSpower from "../public/icons/power-color.png";
 import nextBSpowerLine from "../public/icons/power-line-color.png";
 import nextBSpause from "../public/icons/pause-color.png";
 
-const ui = new GameUI()
-
 function
 selectMenuItem(event)
 {
