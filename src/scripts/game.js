@@ -60,17 +60,17 @@ export class Game {
     });
     this.scene = new THREE.Scene();
 
-    this.inputManager = new InputManager(window.ui.gameWindow);
-    this.cameraManager = new CameraManager(window.ui.gameWindow);
+    this.inputManager = new InputManager(this.#gameWindowRef);
+    this.cameraManager = new CameraManager(this.#gameWindowRef);
 
     // Configure the renderer
-    this.renderer.setSize(window.ui.gameWindow.clientWidth, window.ui.gameWindow.clientHeight);
+    this.renderer.setSize(this.#gameWindowRef.current.clientWidth, this.#gameWindowRef.current.clientHeight);
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
     // Add the renderer to the DOM
-    window.ui.gameWindow.appendChild(this.renderer.domElement);
+    this.#gameWindowRef.current.appendChild(this.renderer.domElement);
 
     // Variables for object selection
     this.raycaster = new THREE.Raycaster();
