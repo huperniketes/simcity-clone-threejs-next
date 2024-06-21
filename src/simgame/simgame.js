@@ -7,6 +7,8 @@ import { SimObject } from '~/scripts/sim/simObject.js';
 import "../public/main.css";
 
 import {
+  useEffect,
+  useRef,
   useState
 } from "react";
 
@@ -99,10 +101,19 @@ ToolMenu()
 function
 SimGame()
 {
+  const [game, setGame] = useState(/** @param {Game} */ null);
+  const renderRef = useRef(/** @type{HTMLDivElement} */null);
+
+  useEffect(() => {
+    let ui = new GameUI();
+
+    setGame(new Game(null, {ui: ui}, renderRef)); // replaced document.getElementById('render-target')
+  }, []);
+
 
   return  (
     <>
-    <div id="render-target"></div>
+    <div id="render-target" ref={renderRef}></div>
     <div id="loading" className="text-overlay">
       <div>
         LOADING...

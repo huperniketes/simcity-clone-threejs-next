@@ -4,6 +4,9 @@ import { CameraManager } from './camera.js';
 import { InputManager } from './input.js';
 import { City } from './sim/city.js';
 import { SimObject } from './sim/simObject.js';
+import { GameUI } from './ui.js';
+import { WindowGlobal } from './windowGlobal.js'
+import { RefObject } from 'react';
 
 /** 
  * Manager for the Three.js scene. Handles rendering of a `City` object
@@ -29,9 +32,27 @@ export class Game {
    */
   selectedObject = null;
 
-  constructor(city) {
-    this.city = city;
+  /**
+   * phantom window object for refactoring
+   * @type {WindowGlobal} window
+   */
+  #window;
 
+  /**
+    * @type {RefObject<HTMLDivElement>} gameWindowRef
+    */
+  #gameWindowRef;
+  
+  /**
+   * @constructor
+   *    @param {City} city
+   *    @param {WindowGlobal} aWindow
+   *    @param {RefObject<HTMLElement>} aGameWindowRef
+   */
+  constructor(city, aWindow, aGameWindowRef) {
+    this.city = city;
+    this.#window = aWindow;
+    this.#gameWindowRef = aGameWindowRef;
     this.renderer = new THREE.WebGLRenderer({ 
       antialias: true
     });
