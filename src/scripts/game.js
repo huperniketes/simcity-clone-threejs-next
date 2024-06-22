@@ -55,6 +55,8 @@ export class Game {
     this.#gameWindowRef = aGameWindowRef;
 
     if(false) {
+
+    const gameWindow = aGameWindowRef.current;
     this.renderer = new THREE.WebGLRenderer({ 
       antialias: true
     });
@@ -64,13 +66,14 @@ export class Game {
     this.cameraManager = new CameraManager(this.#gameWindowRef);
 
     // Configure the renderer
-    this.renderer.setSize(this.#gameWindowRef.current.clientWidth, this.#gameWindowRef.current.clientHeight);
+    const viewSize = {width: gameWindow.clientWidth, height: parseInt(gameWindow.dataset.height || 0)};
+    this.renderer.setSize(viewSize.width, viewSize.height);
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
 
     // Add the renderer to the DOM
-    this.#gameWindowRef.current.appendChild(this.renderer.domElement);
+    gameWindow.appendChild(this.renderer.domElement);
 
     // Variables for object selection
     this.raycaster = new THREE.Raycaster();
