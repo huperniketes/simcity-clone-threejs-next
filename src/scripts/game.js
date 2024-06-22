@@ -54,7 +54,6 @@ export class Game {
     this.#window = aWindow;
     this.#gameWindowRef = aGameWindowRef;
 
-    if(false) {
 
     const gameWindow = aGameWindowRef.current;
     this.renderer = new THREE.WebGLRenderer({ 
@@ -80,6 +79,9 @@ export class Game {
     else
         viewSize = {width: gameWindow.clientWidth, height: parseInt(gameWindow.dataset.height || 0)};
     this.renderer.setSize(viewSize.width, viewSize.height);
+
+    if(false) {
+
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -107,15 +109,22 @@ export class Game {
     }
     else
     {
-      // Code swiped from https://dev.to/omher/how-to-start-using-react-and-threejs-in-a-few-minutes-2h6g
-      const gameWindow = aGameWindowRef.current;
-      const viewSize = {width: parseInt(gameWindow.dataset.width || 0), height: parseInt(gameWindow.dataset.height || 0)};
-
+      if(false)
+      {
+        // Code swiped from https://dev.to/omher/how-to-start-using-react-and-threejs-in-a-few-minutes-2h6g
+        const gameWindow = aGameWindowRef.current;
+        const viewSize = {width: parseInt(gameWindow.dataset.width || 0), height: parseInt(gameWindow.dataset.height || 0)};
+  
+        var camera = new THREE.PerspectiveCamera(75, viewSize.width / viewSize.height, 0.1, 1000);
+        var scene = new THREE.Scene();
+        var renderer = new THREE.WebGLRenderer();
+  
+        renderer.setSize(viewSize.width, viewSize.height);
+      }
+      var scene = this.scene;
+      var renderer = this.renderer;
       var camera = new THREE.PerspectiveCamera(75, viewSize.width / viewSize.height, 0.1, 1000);
-      var scene = new THREE.Scene();
-      var renderer = new THREE.WebGLRenderer();
 
-      renderer.setSize(viewSize.width, viewSize.height);
       // document.body.appendChild( renderer.domElement );
       // use ref as a mount point of the Three.js scene instead of the document.body
       aGameWindowRef.current?.appendChild( renderer.domElement );
