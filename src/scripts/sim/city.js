@@ -5,6 +5,7 @@ import { Tile } from './tile.js';
 import { VehicleGraph } from './vehicles/vehicleGraph.js';
 import { PowerService } from './services/power.js';
 import { SimService } from './services/simService.js';
+import { WindowGlobal } from '../windowGlobal.js'
 
 export class City extends THREE.Group {
   /**
@@ -43,9 +44,19 @@ export class City extends THREE.Group {
    */
   vehicleGraph;
 
-  constructor(size, name = 'My City') {
-    super();
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
 
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   *    @param {number} size
+   */
+  constructor(aWindow, size, name = 'My City') {
+    super();
+    this.#window = aWindow;
     this.name = name;
     this.size = size;
     
@@ -56,7 +67,7 @@ export class City extends THREE.Group {
     for (let x = 0; x < this.size; x++) {
       const column = [];
       for (let y = 0; y < this.size; y++) {
-        const tile = new Tile(x, y);
+        const tile = new Tile(this.#window, x, y);
         tile.refreshView(this);
         this.root.add(tile);
         column.push(tile);
@@ -158,7 +169,7 @@ export class City extends THREE.Group {
   bulldoze(x, y) {
     const tile = this.getTile(x, y);
 
-    if (tile.building) {
+    if (tile?.building) {
       if (tile.building.type === BuildingType.road) {
         this.vehicleGraph.updateTile(x, y, null);
       }
@@ -182,7 +193,7 @@ export class City extends THREE.Group {
   /**
    * Finds the first tile where the criteria are true
    * @param {{x: number, y: number}} start The starting coordinates of the search
-   * @param {(Tile) => (boolean)} filter This function is called on each
+   * @param {(: Tile) => (boolean)} filter This function is called on each
    * tile in the search field until `filter` returns true, or there are
    * no more tiles left to search.
    * @param {number} maxDistance The maximum distance to search from the starting tile

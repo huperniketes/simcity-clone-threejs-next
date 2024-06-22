@@ -98,17 +98,17 @@ export class Game {
     /**
      * Global instance of the asset manager
      */
-    window.assetManager = new AssetManager(() => {
+    this.#window.assetManager = new AssetManager(() => {
       this.#window.ui.hideLoadingText();
 
-      this.city = new City(16);
+      this.city = new City(this.#window, 16);
       this.initialize(this.city);
       this.start();
 
-      setInterval(this.simulate.bind(this), 1000);
+      // setInterval(this.simulate.bind(this), 1000);
     });
 
-    window.addEventListener('resize', this.onResize.bind(this), false);
+    // window.addEventListener('resize', this.onResize.bind(this), false);
     }
     else
     {
@@ -162,7 +162,7 @@ export class Game {
     // Add the grid
     const gridMaterial = new THREE.MeshBasicMaterial({ 
       color: 0x000000,
-      map: window.assetManager.textures['grid'],
+      map: this.#window.assetManager.textures['grid'],
       transparent: true,
       opacity: 0.2
     });
@@ -230,23 +230,23 @@ export class Game {
    * Moves the simulation forward by one step
    */
   simulate() {
-    if (window.ui.isPaused) return;
+    if (this.#window.ui.isPaused) return;
 
     // Update the city data model first, then update the scene
     this.city.simulate(1);
 
-    window.ui.updateTitleBar(this);
-    window.ui.updateInfoPanel(this.selectedObject);
+    this.#window.ui.updateTitleBar(this);
+    this.#window.ui.updateInfoPanel(this.selectedObject);
   }
 
   /**
    * Uses the currently active tool
    */
   useTool() {
-    switch (window.ui.activeToolId) {
+    switch (this.#window.ui.activeToolId) {
       case 'select':
         this.updateSelectedObject();
-        window.ui.updateInfoPanel(this.selectedObject);
+        this.#window.ui.updateInfoPanel(this.selectedObject);
         break;
       case 'bulldoze':
         if (this.focusedObject) {
@@ -257,7 +257,7 @@ export class Game {
       default:
         if (this.focusedObject) {
           const { x, y } = this.focusedObject;
-          this.city.placeBuilding(x, y, window.ui.activeToolId);
+          this.city.placeBuilding(x, y, this.#window.ui.activeToolId);
         }
         break;
     }
