@@ -3,6 +3,7 @@ import { SimObject } from '../simObject';
 import { BuildingStatus } from './buildingStatus';
 import { PowerModule } from './modules/power';
 import { RoadAccessModule } from './modules/roadAccess';
+import { WindowGlobal } from '../../windowGlobal.js'
 
 export class Building extends SimObject {
   /**
@@ -34,8 +35,18 @@ export class Building extends SimObject {
    */
   #statusIcon = new THREE.Sprite();
 
-  constructor() {
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
+
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow) {
     super();
+    this.#window = aWindow;
     this.#statusIcon.visible = false;
     this.#statusIcon.material = new THREE.SpriteMaterial({ depthTest: false })
     this.#statusIcon.layers.set(1);
@@ -52,11 +63,11 @@ export class Building extends SimObject {
       switch(status) {
         case BuildingStatus.NoPower:
           this.#statusIcon.visible = true;
-          this.#statusIcon.material.map = window.assetManager.statusIcons[BuildingStatus.NoPower];
+          this.#statusIcon.material.map = this.#window.assetManager.statusIcons[BuildingStatus.NoPower];
           break;
         case BuildingStatus.NoRoadAccess:
           this.#statusIcon.visible = true;
-          this.#statusIcon.material.map = window.assetManager.statusIcons[BuildingStatus.NoRoadAccess];
+          this.#statusIcon.material.map = this.#window.assetManager.statusIcons[BuildingStatus.NoRoadAccess];
           break;
         default:
           this.#statusIcon.visible = false;

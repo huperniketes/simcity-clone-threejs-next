@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Building } from './buildings/building.js';
 import { SimObject } from './simObject.js';
+import { WindowGlobal } from '../windowGlobal.js'
 
 export class Tile extends SimObject {
   /**
@@ -14,8 +15,18 @@ export class Tile extends SimObject {
    */
   #building = null;
 
-  constructor(x, y) {
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
+  
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow, x, y) {
     super(x, y);
+    this.#window = aWindow;
     this.name = `Tile-${this.x}-${this.y}`;
   }
 
@@ -52,7 +63,7 @@ export class Tile extends SimObject {
       /**
        * @type {THREE.Mesh}
        */
-      const mesh = window.assetManager.getModel(this.terrain, this);
+      const mesh = this.#window.assetManager.getModel(this.terrain, this);
       mesh.name = this.terrain;
       this.setMesh(mesh);
     }

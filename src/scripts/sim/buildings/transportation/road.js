@@ -2,10 +2,22 @@ import * as THREE from 'three';
 import { Building } from '../building.js';
 import { City } from '../../city.js';
 import { DEG2RAD } from 'three/src/math/MathUtils.js';
+import { WindowGlobal } from '../../../windowGlobal.js'
 
 export class Road extends Building {
-  constructor(x, y) {
-    super(x, y);
+
+  /**
+   * @type {WindowGlobal}
+   */
+   #window;
+  
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow, x, y) {
+    super(aWindow, x, y);
+    this.#window = aWindow;
     this.type = 'road';
     this.name = 'Road';
     this.style = 'straight';
@@ -77,7 +89,7 @@ export class Road extends Building {
       this.rotation.y  = 90 * DEG2RAD;
     }
 
-    const mesh = window.assetManager.getModel(`road-${this.style}`, this);
+    const mesh = this.#window.assetManager.getModel(`road-${this.style}`, this);
     this.setMesh(mesh);
     city.vehicleGraph.updateTile(this.x, this.y, this);
   }

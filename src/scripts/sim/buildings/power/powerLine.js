@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Building } from '../building.js';
 import { BuildingType } from '../buildingType.js';
+import { WindowGlobal } from '../../../windowGlobal.js';
 
 const Side = {
   Left: 'left',
@@ -13,8 +14,18 @@ const powerLineMaterial = new THREE.LineBasicMaterial({ color: 0 });
 
 export class PowerLine extends Building {
 
-  constructor(x, y) {
-    super(x, y);
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
+
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow, x, y) {
+    super(aWindow, x, y);
+    this.#window = aWindow;
     this.type = BuildingType.powerLine;
     this.roadAccess.enabled = false;
   }
@@ -23,7 +34,7 @@ export class PowerLine extends Building {
     let group = new THREE.Group();
     
     // Merge two powerline models, offset by 90 degrees
-    let tower = window.assetManager.getModel(this.type, this);
+    let tower = this.#window.assetManager.getModel(this.type, this);
     tower.rotation.y = Math.PI / 4;
     
     // Check which adjacent tiles are powerlines

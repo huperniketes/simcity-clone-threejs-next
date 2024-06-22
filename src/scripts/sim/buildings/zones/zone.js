@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { DEG2RAD } from 'three/src/math/MathUtils.js';
 import { DevelopmentModule, DevelopmentState } from '../modules/development.js';
 import { Building } from '../building.js';
+import { WindowGlobal } from '../../../windowGlobal.js'
 
 /**
  * Represents a zoned building such as residential, commercial or industrial
@@ -17,9 +18,18 @@ export class Zone extends Building {
    */
   development = new DevelopmentModule(this);
 
-  constructor(x = 0, y = 0) {
-    super(x, y);
-    
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
+
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow, x = 0, y = 0) {
+    super(aWindow, x, y);
+    this.#window = aWindow;
     this.name = 'Zone';
     this.power.required = 10;
     
@@ -39,7 +49,7 @@ export class Zone extends Building {
         break;
     }
 
-    let mesh = window.assetManager.getModel(modelName, this);
+    let mesh = this.#window.assetManager.getModel(modelName, this);
 
     // Tint building a dark color if it is abandoned
     if (this.development.state === DevelopmentState.abandoned) {

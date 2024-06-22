@@ -3,12 +3,24 @@ import { VehicleGraphNode } from './vehicleGraphNode.js';
 import config from '../../config.js';
 import { SimObject } from '../simObject.js';
 import models from '../../assets/models.js';
+import { WindowGlobal } from '../../windowGlobal.js'
 
 const FORWARD = new THREE.Vector3(1, 0, 0);
 
 export class Vehicle extends SimObject {
-  constructor(origin, destination) {
+
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
+
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow, origin, destination) {
     super();
+    this.#window = aWindow;
 
     this.createdTime = Date.now();
     this.cycleStartTime = this.createdTime;
@@ -36,7 +48,7 @@ export class Vehicle extends SimObject {
 
     const i = Math.floor(types.length * Math.random());
 
-    this.setMesh(window.assetManager.getModel(types[i], this, true));
+    this.setMesh(this.#window.assetManager.getModel(types[i], this, true));
   }
 
   /**

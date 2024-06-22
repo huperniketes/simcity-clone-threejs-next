@@ -1,5 +1,6 @@
 import { Building } from '../building.js';
 import { BuildingType } from '../buildingType.js';
+import { WindowGlobal } from '../../../windowGlobal.js'
 
 export class PowerPlant extends Building {
 
@@ -13,8 +14,18 @@ export class PowerPlant extends Building {
    */
   powerConsumed = 0;
 
-  constructor(x, y) {
-    super(x, y);
+  /**
+   * @type {WindowGlobal}
+   */
+  #window;
+
+  /**
+   * @constructor
+   *    @param {WindowGlobal} aWindow
+   */
+  constructor(aWindow, x, y) {
+    super(aWindow, x, y);
+    this.#window = aWindow;
     this.type = BuildingType.powerPlant;
   }
 
@@ -31,7 +42,7 @@ export class PowerPlant extends Building {
   }
 
   refreshView() {
-    let mesh = window.assetManager.getModel(this.type, this);
+    let mesh = this.#window.assetManager.getModel(this.type, this);
     this.setMesh(mesh);
   }
 
