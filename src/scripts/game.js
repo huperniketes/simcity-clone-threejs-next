@@ -93,10 +93,14 @@ export class Game {
     else
     {
       // Code swiped from https://dev.to/omher/how-to-start-using-react-and-threejs-in-a-few-minutes-2h6g
-      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const gameWindow = aGameWindowRef.current;
+      const viewSize = {width: parseInt(gameWindow.dataset.width || 0), height: parseInt(gameWindow.dataset.height || 0)};
+
+      var camera = new THREE.PerspectiveCamera(75, viewSize.width / viewSize.height, 0.1, 1000);
       var scene = new THREE.Scene();
       var renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      renderer.setSize(viewSize.width, viewSize.height);
       // document.body.appendChild( renderer.domElement );
       // use ref as a mount point of the Three.js scene instead of the document.body
       aGameWindowRef.current?.appendChild( renderer.domElement );

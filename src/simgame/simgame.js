@@ -111,7 +111,7 @@ SimGame()
 
   return  (
     <>
-    <div id="render-target" ref={renderRef}></div>
+    <div id="render-target" data-width="1200" data-height="1200" ref={renderRef}></div>
     <div id="loading" className="text-overlay">
       <div>
         LOADING...
