@@ -1,3 +1,5 @@
+import { RefObject } from 'react';
+
 /** 
  * Manages mouse and keyboard input
  */
@@ -23,11 +25,21 @@ export class InputManager {
    */
   isRightMouseDown = false;
 
-  constructor() {
-    window.ui.gameWindow.addEventListener('mousedown', this.#onMouseDown.bind(this), false);
-    window.ui.gameWindow.addEventListener('mouseup', this.#onMouseUp.bind(this), false);
-    window.ui.gameWindow.addEventListener('mousemove', this.#onMouseMove.bind(this), false);
-    window.ui.gameWindow.addEventListener('contextmenu', (event) => event.preventDefault(), false);
+  /**
+   * @type {RefObject<HTMLDivElement>}
+   */
+  #gameWindowRef;
+
+  /**
+   * @constructor
+   *    @param {RefObject<HTMLDivElement>} aGameWindowRef
+   */
+  constructor(aGameWindowRef) {
+    this.#gameWindowRef = aGameWindowRef;
+    this.#gameWindowRef.current.addEventListener('mousedown', this.#onMouseDown.bind(this), false);
+    this.#gameWindowRef.current.addEventListener('mouseup', this.#onMouseUp.bind(this), false);
+    this.#gameWindowRef.current.addEventListener('mousemove', this.#onMouseMove.bind(this), false);
+    this.#gameWindowRef.current.addEventListener('contextmenu', (event) => event.preventDefault(), false);
   }
 
   /**

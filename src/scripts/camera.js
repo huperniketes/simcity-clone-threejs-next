@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { RefObject } from 'react';
 
 // -- Constants --
 const DEG2RAD = Math.PI / 180.0;
@@ -20,8 +21,20 @@ const PAN_SENSITIVITY = -0.01;
 const Y_AXIS = new THREE.Vector3(0, 1, 0);
 
 export class CameraManager {
-  constructor() {
-    const aspect = window.ui.gameWindow.clientWidth / window.ui.gameWindow.clientHeight;
+
+  /**
+   * @type {RefObject<HTMLDivElement>}
+   */
+  #gameWindowRef;
+
+  /**
+   * @constructor
+   *    @param {RefObject<HTMLDivElement>} aGameWindowRef
+   */
+  constructor(aGameWindowRef) {
+    this.#gameWindowRef = aGameWindowRef;
+
+    const aspect = this.#gameWindowRef.current.dataset.width / this.#gameWindowRef.current.dataset.height;
 
     this.camera = new THREE.OrthographicCamera(
       (CAMERA_SIZE * aspect) / -2,
@@ -37,9 +50,9 @@ export class CameraManager {
 
     this.updateCameraPosition();
 
-    window.ui.gameWindow.addEventListener('wheel', this.onMouseScroll.bind(this), false);
-    window.ui.gameWindow.addEventListener('mousedown', this.onMouseMove.bind(this), false);
-    window.ui.gameWindow.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+    this.#gameWindowRef.current.addEventListener('wheel', this.onMouseScroll.bind(this), false);
+    this.#gameWindowRef.current.addEventListener('mousedown', this.onMouseMove.bind(this), false);
+    this.#gameWindowRef.current.addEventListener('mousemove', this.onMouseMove.bind(this), false);
   }
 
   /**
@@ -91,7 +104,7 @@ export class CameraManager {
   }
 
   resize() {
-    const aspect = window.ui.gameWindow.clientWidth / window.ui.gameWindow.clientHeight;
+    const aspect = this.#gameWindowRef.current.dataset.width / this.#gameWindowRef.current.dataset.height;
     this.camera.left = (CAMERA_SIZE * aspect) / -2;
     this.camera.right = (CAMERA_SIZE * aspect) / 2;
     this.camera.updateProjectionMatrix();
