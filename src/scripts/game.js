@@ -56,6 +56,7 @@ export class Game {
     this.#window = aWindow;
     this.#gameWindowRef = aGameWindowRef;
 
+    this.#window.ui.showLoadingText();
 
     const gameWindow = aGameWindowRef.current;
     this.renderer = new THREE.WebGLRenderer({ 
@@ -98,7 +99,7 @@ export class Game {
      * Global instance of the asset manager
      */
     window.assetManager = new AssetManager(() => {
-      window.ui.hideLoadingText();
+      this.#window.ui.hideLoadingText();
 
       this.city = new City(16);
       this.initialize(this.city);
@@ -143,6 +144,7 @@ export class Game {
         renderer.render(scene, camera);
       };
       animate();
+      this.#window.ui.hideLoadingText();
     }
   }
 
