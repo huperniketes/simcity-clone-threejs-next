@@ -83,7 +83,7 @@ export class Game {
         viewSize = {width: gameWindow.clientWidth, height: parseInt(gameWindow.dataset.height || 0)};
     this.renderer.setSize(viewSize.width, viewSize.height);
 
-    if(false) {
+    if(true) {
 
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
