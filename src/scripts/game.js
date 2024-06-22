@@ -8,6 +8,8 @@ import { GameUI } from './ui.js';
 import { WindowGlobal } from './windowGlobal.js'
 import { RefObject } from 'react';
 
+const fixedRenderViewSize = false;
+
 /** 
  * Manager for the Three.js scene. Handles rendering of a `City` object
  */
