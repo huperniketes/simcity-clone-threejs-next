@@ -66,7 +66,19 @@ export class Game {
     this.cameraManager = new CameraManager(this.#gameWindowRef);
 
     // Configure the renderer
-    const viewSize = {width: gameWindow.clientWidth, height: parseInt(gameWindow.dataset.height || 0)};
+    /**
+     * @typedef {Object} ViewSize
+     * @property {number} width
+     * @property {number} height
+     */
+    /**
+     * @type {ViewSize} viewSize
+     */
+    let viewSize;
+    if(fixedRenderViewSize)
+        viewSize = {width: gameWindow.clientWidth, height: gameWindow.clientHeight};
+    else
+        viewSize = {width: gameWindow.clientWidth, height: parseInt(gameWindow.dataset.height || 0)};
     this.renderer.setSize(viewSize.width, viewSize.height);
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
