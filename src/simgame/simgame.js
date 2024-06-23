@@ -106,6 +106,10 @@ SimGame()
     setGame(new Game(null, {ui: ui}, renderRef)); // replaced document.getElementById('render-target')
   }, []);
 
+  function
+  togglePause()
+  {
+  }
 
   return  (
     <>
@@ -137,7 +141,7 @@ SimGame()
       </div>
       <div id="ui-toolbar" className="container" style={{ maxWidth: "64px" }} >
         <ToolMenu />
-        <button id='button-pause' className="ui-button" onClick={ui.togglePause()} >
+        <button id='button-pause' className="ui-button" onClick={togglePause} >
           <Image id='pause-button-icon' className="toolbar-icon" height={20} width={20} src={nextBSpause} />
         </button>
       </div>
