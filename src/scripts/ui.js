@@ -1,4 +1,6 @@
 
+import {RefObject} from 'react';
+
 const playIconUrl = '/icons/play-color.png';
 const pauseIconUrl = '/icons/pause-color.png';
 
@@ -17,6 +19,20 @@ export class GameUI {
    * @type {boolean}
    */
   isPaused = false;
+
+  /**
+   * @type {RefObject<HTMLDivElement>}
+   */
+  gameWindowRef;
+
+  /**
+   * @constructor
+   *   @param {RefObject<HTMLDivElement>} aGameWindow
+   */
+  constructor(aGameWindow)
+  {
+    this.gameWindowRef = aGameWindow;
+  }
 
   get gameWindow() {
     return document.getElementById('render-target');

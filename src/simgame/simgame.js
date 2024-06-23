@@ -103,7 +103,7 @@ SimGame()
   const renderRef = useRef(/** @type{HTMLDivElement} */null);
 
   useEffect(() => {
-    let ui = new GameUI();
+    let ui = new GameUI(renderRef);
 
     setGame(new Game(null, {ui: ui}, renderRef)); // replaced document.getElementById('render-target')
   }, []);
