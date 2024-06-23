@@ -299,7 +299,9 @@ export class Game {
    * Resizes the renderer to fit the current game window
    */
   onResize() {
-    this.cameraManager.resize(window.ui.gameWindow);
-    this.renderer.setSize(window.ui.gameWindow.clientWidth, window.ui.gameWindow.clientHeight);
+    const viewSize = this.#window.ui.viewSize;
+
+    this.cameraManager.resize(viewSize.width, viewSize.height);
+    this.renderer.setSize(viewSize.width, viewSize.height);
   }
 }
