@@ -153,8 +153,8 @@ export class Game {
       opacity: 0.2
     });
     gridMaterial.map.repeat = new THREE.Vector2(city.size, city.size);
-    gridMaterial.map.wrapS = city.size;
-    gridMaterial.map.wrapT = city.size;
+    gridMaterial.map.wrapS = THREE.RepeatWrapping;
+    gridMaterial.map.wrapT = THREE.RepeatWrapping;
 
     const grid = new THREE.Mesh(
       new THREE.BoxGeometry(city.size, 0.1, city.size),
