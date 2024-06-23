@@ -41,12 +41,10 @@ selectMenuItem(event)
 function
 MenuItem(type, imgSource, isSelected, aParentFunction)
 {
-  const [isSelected, setSelected] = useState(false);
 
   function
   itemSelected()
   {
-    setSelected(true);
   }
 
   return  (
