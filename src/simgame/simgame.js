@@ -137,7 +137,7 @@ SimGame()
           <span id="population-counter">0</span>
         </div>
       </div>
-      <div id="ui-toolbar" className="container" >
+      <div id="ui-toolbar" className="container" style={{ maxWidth: "64px" }} >
         <ToolMenu />
         <button id='button-pause' className="ui-button" onClick={ui.togglePause()} >
           <Image id='pause-button-icon' className="toolbar-icon" height={20} width={20} src={nextBSpause} />
