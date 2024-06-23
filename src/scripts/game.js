@@ -8,8 +8,6 @@ import { GameUI } from './ui.js';
 import { WindowGlobal } from './windowGlobal.js'
 import { RefObject } from 'react';
 
-const fixedRenderViewSize = false;
-
 /** 
  * Manager for the Three.js scene. Handles rendering of a `City` object
  */
@@ -68,19 +66,7 @@ export class Game {
     this.cameraManager = new CameraManager(this.#gameWindowRef);
 
     // Configure the renderer
-    /**
-     * @typedef {Object} ViewSize
-     * @property {number} width
-     * @property {number} height
-     */
-    /**
-     * @type {ViewSize} viewSize
-     */
-    let viewSize;
-    if(fixedRenderViewSize)
-        viewSize = {width: gameWindow.clientWidth, height: gameWindow.clientHeight};
-    else
-        viewSize = {width: gameWindow.clientWidth, height: parseInt(gameWindow.dataset.height || 0)};
+    let viewSize = this.#window.ui.viewSize;
     this.renderer.setSize(viewSize.width, viewSize.height);
 
     if(true) {

@@ -4,6 +4,8 @@ import {RefObject} from 'react';
 const playIconUrl = '/icons/play-color.png';
 const pauseIconUrl = '/icons/pause-color.png';
 
+const fixedRenderViewSize = false;
+
 export class GameUI {
   /**
    * Currently selected tool
@@ -101,5 +103,24 @@ export class GameUI {
       infoElement.style.visibility = 'hidden';
       infoElement.innerHTML = '';
     }
+  }
+
+  /**
+   * @typedef {Object} ViewSize
+   * @property {number} width
+   * @property {number} height
+   */
+
+  /**
+   * @type {ViewSize}
+   */
+  get viewSize() {
+    let viewSize;
+
+    if(fixedRenderViewSize)
+      viewSize = {width: this.gameWindowRef.current.clientWidth, height: this.gameWindowRef.current.clientHeight};
+    else
+      viewSize = {width: this.gameWindowRef.current.clientWidth, height: window.innerHeight};
+    return  (viewSize);
   }
 }
