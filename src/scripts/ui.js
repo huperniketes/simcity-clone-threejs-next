@@ -123,4 +123,13 @@ export class GameUI {
       viewSize = {width: this.gameWindowRef.current.clientWidth, height: window.innerHeight};
     return  (viewSize);
   }
+
+  /**
+   * @type {number}
+   */
+  get aspect() {
+    let viewSize = this.viewSize;
+
+    return  (viewSize.width / viewSize.height);
+  }
 }
