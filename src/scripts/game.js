@@ -63,7 +63,7 @@ export class Game {
     this.scene = new THREE.Scene();
 
     this.inputManager = new InputManager(this.#gameWindowRef);
-    this.cameraManager = new CameraManager(this.#gameWindowRef);
+    this.cameraManager = new CameraManager(this.#window);
 
     // Configure the renderer
     let viewSize = this.#window.ui.viewSize;
