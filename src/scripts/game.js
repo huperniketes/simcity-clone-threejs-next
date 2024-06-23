@@ -277,9 +277,10 @@ export class Game {
    * @returns {THREE.Mesh | null}
    */
   #raycast() {
+    var divBoundingRect = this.#gameWindowRef.current?.getBoundingClientRect();
     var coords = {
-      x: (this.inputManager.mouse.x / this.renderer.domElement.clientWidth) * 2 - 1,
-      y: -(this.inputManager.mouse.y / this.renderer.domElement.clientHeight) * 2 + 1
+      x:  ((this.inputManager.mouse.x - divBoundingRect.x) / this.renderer.domElement.clientWidth) * 2 - 1,
+      y: -((this.inputManager.mouse.y - divBoundingRect.y) / this.renderer.domElement.clientHeight) * 2 + 1
     };
 
     this.raycaster.setFromCamera(coords, this.cameraManager.camera);
