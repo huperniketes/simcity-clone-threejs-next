@@ -79,9 +79,9 @@ export class InputManager {
    * @param {MouseEvent} event 
    */
   #onMouseMove(event) {
-    this.isLeftMouseDown = event.buttons & 1;
-    this.isRightMouseDown = event.buttons & 2;
-    this.isMiddleMouseDown = event.buttons & 4;
+    this.isLeftMouseDown = (event.buttons & 1) != false;
+    this.isRightMouseDown = (event.buttons & 2) != false;
+    this.isMiddleMouseDown = (event.buttons & 4) != false;
     this.mouse.x = event.clientX;
     this.mouse.y = event.clientY;
   }
