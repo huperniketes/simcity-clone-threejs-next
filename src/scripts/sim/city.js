@@ -91,7 +91,7 @@ export class City extends THREE.Group {
     for (let x = 0; x < this.size; x++) {
       for (let y = 0; y < this.size; y++) {
         const tile = this.getTile(x, y);
-        population += tile.building?.residents?.count ?? 0;
+        population += tile?.building?.residents?.count ?? 0;
       }
     }
     return population;

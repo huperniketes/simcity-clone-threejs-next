@@ -42,7 +42,7 @@ export class VehicleGraphNode extends THREE.Object3D {
       return null;
     } else {
       const i = Math.floor(this.next.length * Math.random());
-      return this.next[i];
+      return (this.next[i] ?? null);
     }
   }
 }

@@ -20,7 +20,7 @@ export class Building extends SimObject {
   /**
    * @type {PowerModule}
    */
-  power = new PowerModule(this);
+  power = new PowerModule();
   /**
    * @type {RoadAccessModule}
    */

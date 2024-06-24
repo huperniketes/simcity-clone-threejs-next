@@ -102,7 +102,7 @@ export class Game {
       {
         // Code swiped from https://dev.to/omher/how-to-start-using-react-and-threejs-in-a-few-minutes-2h6g
         const gameWindow = aGameWindowRef.current;
-        const viewSize = {width: parseInt(gameWindow.dataset.width || 0), height: parseInt(gameWindow.dataset.height || 0)};
+        const viewSize = {width: parseInt(gameWindow.dataset.width ?? 0), height: parseInt(gameWindow.dataset.height ?? 0)};
   
         var camera = new THREE.PerspectiveCamera(75, viewSize.width / viewSize.height, 0.1, 1000);
         var scene = new THREE.Scene();
@@ -152,7 +152,7 @@ export class Game {
     // Add the grid
     const gridMaterial = new THREE.MeshBasicMaterial({ 
       color: 0x000000,
-      map: this.#window.assetManager.textures['grid'],
+      map: this.#window.assetManager.textures.grid,
       transparent: true,
       opacity: 0.2
     });

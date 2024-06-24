@@ -53,7 +53,7 @@ export class Tile extends SimObject {
 
     // Add to scene graph
     if (value) {
-      this.add(this.#building);
+      this.add(value);
     }
   }
 
