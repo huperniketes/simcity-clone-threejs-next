@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { BuildingType } from './buildings/buildingType.js';
-import { createBuilding } from './buildings/buildingFactory.js';
+import { buildingConstructor } from './buildings/buildingFactory.js';
 import { Tile } from './tile.js';
 import { VehicleGraph } from './vehicles/vehicleGraph.js';
 import { PowerService } from './services/power.js';
@@ -145,7 +145,10 @@ export class City extends THREE.Group {
 
     // If the tile doesnt' already have a building, place one there
     if (tile && !tile.building) {
-      tile.setBuilding(createBuilding(x, y, buildingType));
+      const bldgConstructor = buildingConstructor(buildingType);
+      var   bldg = new bldgConstructor(this.#window, x, y);
+
+      tile.setBuilding(bldg);
       tile.refreshView(this);
       
       // Update buildings on adjacent tile in case they need to
