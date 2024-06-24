@@ -22,6 +22,8 @@ export class PowerLine extends Building {
   /**
    * @constructor
    *    @param {WindowGlobal} aWindow
+   *    @param {number} x 
+   *    @param {number} y 
    */
   constructor(aWindow, x, y) {
     super(aWindow, x, y);

@@ -6,9 +6,13 @@ import { Vehicle } from './vehicle.js';
 import { Road } from '../buildings/transportation/road.js';
 
 export class VehicleGraph extends THREE.Group {
+
+  /**
+   * @constructor
+   * @param {number} size
+   */
   constructor(size) {
     super();
-
     this.size = size;
 
     /**

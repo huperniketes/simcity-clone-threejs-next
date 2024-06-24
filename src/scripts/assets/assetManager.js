@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import viteConfig from '../../../vite.config.js';
 import models from './models.js';
+import { SimObject } from '../sim/simObject.js';
 
 const baseUrl = viteConfig.base;
 
@@ -21,10 +22,17 @@ export class AssetManager {
     'no-road-access': this.#loadTexture(`${baseUrl}statusIcons/no-road-access.png`, true)
   }
 
+  /**
+   * @type {Record<string, THREE.Group>}
+   */
   models = {};
 
   sprites = {};
 
+  /**
+   * @constructor
+   *   @param {() => void } onLoad
+   */
   constructor(onLoad) {
     this.modelCount = Object.keys(models).length;
     this.loadedModelCount = 0;
@@ -39,11 +47,12 @@ export class AssetManager {
   /**
    * Returns a cloned copy of a mesh
    * @param {string} name The name of the mesh to retrieve
-   * @param {Object} simObject The SimObject object that corresponds to this mesh
+   * @param {SimObject} simObject The SimObject object that corresponds to this mesh
    * @param {boolean} transparent True if materials should be transparent. Default is false.
    * @returns {THREE.Mesh}
    */
   getModel(name, simObject, transparent = false) {
+    /** @type THREE.Group */
     const mesh = this.models[name].clone();
 
     // Clone materials so each object has a unique material
@@ -75,7 +84,7 @@ export class AssetManager {
 
   /**
    * Load the 3D models
-   * @param {string} url The URL of the model to load
+   * @param {string} name The URL of the model to load
    */
   #loadModel(name, {filename, scale = 1, rotation = 0, receiveShadow = true, castShadow = true}) {
     this.modelLoader.load(`${baseUrl}models/${filename}`,

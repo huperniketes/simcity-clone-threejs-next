@@ -21,7 +21,7 @@ export class City extends THREE.Group {
   root = new THREE.Group();
   /**
    * List of services for the city
-   * @type {SimService}
+   * @type {SimService[]}
    */
   services = [];
   /**
@@ -35,7 +35,7 @@ export class City extends THREE.Group {
   simTime = 0;
   /**
    * 2D array of tiles that make up the city
-   * @type {Tile[][]}
+   * @type {(Tile | null)[][]}
    */
   tiles = [];
   /**
@@ -115,7 +115,7 @@ export class City extends THREE.Group {
 
   /**
    * Step the simulation forward by one step
-   * @type {number} steps Number of steps to simulate forward in time
+   * @param {number} steps Number of steps to simulate forward in time
    */
   simulate(steps = 1) {
     let count = 0;
@@ -193,7 +193,7 @@ export class City extends THREE.Group {
   /**
    * Finds the first tile where the criteria are true
    * @param {{x: number, y: number}} start The starting coordinates of the search
-   * @param {(: Tile) => (boolean)} filter This function is called on each
+   * @param {(tile: Tile) => (boolean)} filter This function is called on each
    * tile in the search field until `filter` returns true, or there are
    * no more tiles left to search.
    * @param {number} maxDistance The maximum distance to search from the starting tile

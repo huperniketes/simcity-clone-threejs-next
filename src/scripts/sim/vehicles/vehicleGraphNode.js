@@ -1,6 +1,13 @@
 import * as THREE from 'three';
 
 export class VehicleGraphNode extends THREE.Object3D {
+
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   */
   constructor(x, y) {
     super();
 
@@ -12,6 +19,9 @@ export class VehicleGraphNode extends THREE.Object3D {
     this.next = [];
   }
 
+  /**
+   * @param { VehicleGraphNode } node
+   */
   connect(node) {
     if (!node) return;
 

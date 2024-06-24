@@ -16,10 +16,7 @@ export class PowerModule extends SimModule {
    */
   required = 0;
 
-  /**
-   * @param {number} powerRequired Amount of power (kWh) this building needs
-   */
-  constructor(powerRequired) {
+  constructor() {
     super();
     this.required = this.supplied;
   }

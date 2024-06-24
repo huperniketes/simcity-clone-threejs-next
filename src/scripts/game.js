@@ -47,7 +47,7 @@ export class Game {
    * @constructor
    *    @param {City} city
    *    @param {WindowGlobal} aWindow
-   *    @param {RefObject<HTMLElement>} aGameWindowRef
+   *    @param {RefObject<HTMLDivElement>} aGameWindowRef
    */
   constructor(city, aWindow, aGameWindowRef) {
     this.city = city;
@@ -136,6 +136,7 @@ export class Game {
 
   /**
    * Initalizes the scene, clearing all existing assets
+   * @param {City} city
    */
   initialize(city) {
     this.scene.clear();
@@ -144,6 +145,9 @@ export class Game {
     this.#setupGrid(city);
   }
 
+  /**
+   * @param {City} city
+   */
   #setupGrid(city) {
     // Add the grid
     const gridMaterial = new THREE.MeshBasicMaterial({ 

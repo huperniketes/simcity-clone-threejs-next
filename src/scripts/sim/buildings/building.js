@@ -3,6 +3,7 @@ import { SimObject } from '../simObject';
 import { BuildingStatus } from './buildingStatus';
 import { PowerModule } from './modules/power';
 import { RoadAccessModule } from './modules/roadAccess';
+import { City } from '../city.js';
 import { WindowGlobal } from '../../windowGlobal.js'
 
 export class Building extends SimObject {
@@ -31,7 +32,7 @@ export class Building extends SimObject {
   status = BuildingStatus.Ok;
   /**
    * Icon displayed when building status
-   * @type {Sprite}
+   * @type {THREE.Sprite}
    */
   #statusIcon = new THREE.Sprite();
 
@@ -75,6 +76,9 @@ export class Building extends SimObject {
     }
   }
 
+  /**
+   * @param {City} city 
+   */
   simulate(city) {
     super.simulate(city);
     

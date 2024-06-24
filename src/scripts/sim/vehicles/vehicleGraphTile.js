@@ -6,6 +6,13 @@ const roadOffset = 0.05;
 const tileOffset = 0.25;
 
 export class VehicleGraphTile extends THREE.Group {
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   *    @param {number} rotation
+   */
   constructor(x, y, rotation) {
     super();
 
@@ -132,6 +139,13 @@ export class VehicleGraphTile extends THREE.Group {
 }
 
 export class EndRoadTile extends VehicleGraphTile {
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   *    @param {number} rotation
+   */
   constructor(x, y, rotation) {
     super(x, y, rotation);
 
@@ -161,6 +175,13 @@ export class EndRoadTile extends VehicleGraphTile {
 }
 
 export class StraightRoadTile extends VehicleGraphTile {
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   *    @param {number} rotation
+   */
   constructor(x, y, rotation) {
     super(x, y, rotation);
 
@@ -193,6 +214,13 @@ export class StraightRoadTile extends VehicleGraphTile {
 
 
 export class CornerRoadTile extends VehicleGraphTile {
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   *    @param {number} rotation
+   */
   constructor(x, y, rotation) {
     super(x, y, rotation);
 
@@ -235,6 +263,13 @@ export class CornerRoadTile extends VehicleGraphTile {
 
 
 export class ThreeWayRoadTile extends VehicleGraphTile {
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   *    @param {number} rotation
+   */
   constructor(x, y, rotation) {
     super(x, y, rotation);
 
@@ -292,6 +327,13 @@ export class ThreeWayRoadTile extends VehicleGraphTile {
 }
 
 export class FourWayRoadTile extends VehicleGraphTile {
+
+  /**
+   * @constructor
+   *    @param {number} x
+   *    @param {number} y
+   *    @param {number} rotation
+   */
   constructor(x, y, rotation) {
     super(x, y, rotation);
 

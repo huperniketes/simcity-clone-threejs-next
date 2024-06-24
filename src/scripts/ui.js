@@ -1,5 +1,6 @@
 
 import {RefObject} from 'react';
+import {SimObject} from '~/scripts/sim/simObject.js';
 
 const playIconUrl = '/icons/play-color.png';
 const pauseIconUrl = '/icons/pause-color.png';
@@ -50,7 +51,7 @@ export class GameUI {
   
   /**
    * 
-   * @param {*} event 
+   * @param {HTMLButtonElement} event 
    */
   onToolSelected(event) {
     // Deselect previously selected button and selected this one

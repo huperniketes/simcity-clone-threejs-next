@@ -11,7 +11,7 @@ export class Tile extends SimObject {
   terrain = 'grass';
   /**
    * The building on this tile
-   * @type {Building?}
+   * @type {Building? | null}
    */
   #building = null;
 
@@ -19,10 +19,12 @@ export class Tile extends SimObject {
    * @type {WindowGlobal}
    */
   #window;
-  
+
   /**
    * @constructor
    *    @param {WindowGlobal} aWindow
+   *    @param {number} x
+   *    @param {number} y
    */
   constructor(aWindow, x, y) {
     super(x, y);
@@ -31,14 +33,14 @@ export class Tile extends SimObject {
   }
 
   /**
-   * @type {Building}
+   * @type {Building | null}
    */
   get building() {
     return this.#building;
   }
 
   /**
-   * @type {Building} value
+   * @param {Building | null} value
    */
   setBuilding(value) {
     // Remove and dispose resources for existing building
