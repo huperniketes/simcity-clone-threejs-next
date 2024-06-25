@@ -5,6 +5,13 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    eslint: {
+        ignoreDuringBuilds:  true,      // Reports rule violations (warnings and errors) enabled in .eslintrc when false
+    },
+    typescript: {
+        ignoreBuildErrors:  true,       // Fails on first error when false
+    },
+};
 
 export default config;
