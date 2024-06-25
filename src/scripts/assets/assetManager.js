@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import viteConfig from '../../../vite.config.js';
+import viteConfig from '~/simgame/simgame.config.js';
 import models from './models.js';
 import { SimObject } from '../sim/simObject.js';
 
