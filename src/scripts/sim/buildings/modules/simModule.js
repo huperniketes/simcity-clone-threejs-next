@@ -1,9 +1,8 @@
-import { City } from '../../city.js';
 
 export class SimModule {
   /**
    * Simulates one day passing
-   * @param {City} city 
+   * @param {import("../../city.js").City} city 
    */
   simulate(city) {
     // Implement in subclass
