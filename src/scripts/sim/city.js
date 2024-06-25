@@ -213,21 +213,19 @@ export class City extends THREE.Group {
       // Has this tile been visited? If so, ignore it and move on
       if (!tile || visited.has(tile.id))
         continue;
-      } else {
-        visited.add(tile.id);
-      }
 
       // Check if tile is outside the search bounds
       const distance = startTile?.distanceTo(tile);
       if (distance && (distance > maxDistance)) continue;
 
-      // Add this tiles neighbor's to the search list
-      tilesToSearch.push(...this.getTileNeighbors(tile.x, tile.y));
-
       // If this tile passes the criteria 
       if (filter(tile)) {
         return tile;
       }
+
+      // Add this tiles neighbor's to the search list
+      visited.add(tile.id);
+      tilesToSearch.push(...this.getTileNeighbors(tile.x, tile.y));
     }
 
     return null;
