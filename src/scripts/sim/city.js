@@ -205,24 +205,21 @@ export class City extends THREE.Group {
   findTile(start, filter, maxDistance) {
     const startTile = this.getTile(start.x, start.y);
     const visited = new Set();
-    const tilesToSearch = [];
-
-    // Initialze our search with the starting tile
-    tilesToSearch.push(startTile);
+    const tilesToSearch = [startTile];    // Initialze our search with the starting tile
 
     while (tilesToSearch.length > 0) {
       const tile = tilesToSearch.shift();
 
       // Has this tile been visited? If so, ignore it and move on
-      if (visited.has(tile.id)) {
+      if (!tile || visited.has(tile.id))
         continue;
       } else {
         visited.add(tile.id);
       }
 
       // Check if tile is outside the search bounds
-      const distance = startTile.distanceTo(tile);
-      if (distance > maxDistance) continue;
+      const distance = startTile?.distanceTo(tile);
+      if (distance && (distance > maxDistance)) continue;
 
       // Add this tiles neighbor's to the search list
       tilesToSearch.push(...this.getTileNeighbors(tile.x, tile.y));
