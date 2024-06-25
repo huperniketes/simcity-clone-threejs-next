@@ -1,0 +1,26 @@
+Although this project now builds and runs on Vercel, the game isn't functional within Next yet. It only displays the grid and updates
+the info panel when grid tiles are selected.
+
+Tool selection works in the menu, but isn't recognized by the Game instance. As a result, placing SimObjects doesn't work.
+Another note on SimObjects: subclasses have x/y coordinates as parameters but are ignored so should be deleted.
+
+The createBuilding() factory function should be deleted if buildingConstructor() works correctly.
+
+Scrolling zooms in and out, but also scrolls up and down. That needs to stop.
+TypeScript complains when I use regular JS imports for type definitions, but JsDoc requires type defs to be imported repeatedly for
+the same types.
+
+Unable to place objects on the grid.
+The Pause button doesn't work.
+Stubbed togglePause() function to squelch error.
+
+npm warns of these issues when installing locally:
+npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm WARN deprecated @humanwhocodes/config-array@0.11.14: Use @eslint/config-array instead
+npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm WARN deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+
+I also started work on migrating eslint to a more recent version (Eslint v9+) beginning with the eslintrc config file.
+
+The project should also move to ES modules, although I don't believe anything is CommonJS (except for the .eslintrc.cjs config file).

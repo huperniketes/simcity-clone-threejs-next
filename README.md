@@ -2,7 +2,10 @@
 
 ## What is this?
 
-This is an ongoing project where I attempt to create a clone of SimCity using [Three.js](https://threejs.org/).
+This is a fork of Dan Greenheck's SimCity clone project using [Three.js](https://threejs.org/). This fork tracks Dan's work,
+and has ported it to React/Next in hopes of creating a library from it.
+
+Current status can be found in WIP.txt until remaining tasks are created in GitHub issues.
 
 ## How do I run this locally?
 
