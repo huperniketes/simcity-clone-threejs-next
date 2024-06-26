@@ -68,8 +68,11 @@ gameMenuItems = [
   { type: "power-line",  imgSource: nextBSpowerLine }
 ];
 
+/**
+ * @param {{clickHandler: (s: string) => (void)}} props
+ */
 function
-ToolMenu()
+ToolMenu({clickHandler})
 {
   const [selectedTool, setSelectedTool] = useState("select");
 
@@ -79,6 +82,7 @@ ToolMenu()
     
     e.preventDefault();
     setSelectedTool(e.target.dataset.type);
+    clickHandler && clickHandler(selectedTool);
   }
 
   return  (
@@ -140,7 +144,7 @@ SimGame()
         </div>
       </div>
       <div id="ui-toolbar" className="container" style={{ maxWidth: "64px" }} >
-        <ToolMenu />
+        <ToolMenu clickHandler={/** @type {Game} */(game)?.toolSelected.bind(game)} />
         <button id='button-pause' className="ui-button" onClick={togglePause} >
           <Image id='pause-button-icon' className="toolbar-icon" height={20} width={20} src={nextBSpause} />
         </button>

@@ -241,18 +241,25 @@ export class Game {
       case 'bulldoze':
         if (this.focusedObject) {
           const { x, y } = this.focusedObject;
-          this.city.bulldoze(x, y);
+        this.city.bulldoze(x, y);
         }
         break;
       default:
         if (this.focusedObject) {
           const { x, y } = this.focusedObject;
-          this.city.placeBuilding(x, y, this.#window.ui.activeToolId);
-        }
-        break;
+        this.city.placeBuilding(x, y, this.#window.ui.activeToolId);
     }
+        break;
   }
-  
+
+  /**
+   * @param {string} aToolId
+   */
+  toolSelected(aToolId)
+  {
+    this.#window.ui.activeToolId = aToolId;
+  }
+
   /**
    * Sets the currently selected object and highlights it
    */
