@@ -209,7 +209,7 @@ export class Game {
     this.city.draw();
     this.updateFocusedObject();
 
-    if (this.inputManager.isLeftMouseDown) {
+    if (this.focusedObject && this.inputManager.isLeftMouseDown) {
       this.useTool();
     }
 
@@ -239,17 +239,11 @@ export class Game {
         this.#window.ui.updateInfoPanel(this.selectedObject);
         break;
       case 'bulldoze':
-        if (this.focusedObject) {
-          const { x, y } = this.focusedObject;
         this.city.bulldoze(x, y);
-        }
         break;
       default:
-        if (this.focusedObject) {
-          const { x, y } = this.focusedObject;
         this.city.placeBuilding(x, y, this.#window.ui.activeToolId);
     }
-        break;
   }
 
   /**
