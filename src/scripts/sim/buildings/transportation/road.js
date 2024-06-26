@@ -15,8 +15,8 @@ export class Road extends Building {
    * @constructor
    *    @param {WindowGlobal} aWindow
    */
-  constructor(aWindow, x, y) {
-    super(aWindow, x, y);
+  constructor(aWindow) {
+    super(aWindow);
     this.#window = aWindow;
     this.type = 'road';
     this.name = 'Road';

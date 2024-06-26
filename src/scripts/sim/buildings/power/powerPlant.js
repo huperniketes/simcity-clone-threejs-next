@@ -22,11 +22,9 @@ export class PowerPlant extends Building {
   /**
    * @constructor
    *    @param {WindowGlobal} aWindow
-   *    @param {number} x 
-   *    @param {number} y 
    */
-  constructor(aWindow, x, y) {
-    super(aWindow, x, y);
+  constructor(aWindow) {
+    super(aWindow);
     this.#window = aWindow;
     this.type = BuildingType.powerPlant;
   }

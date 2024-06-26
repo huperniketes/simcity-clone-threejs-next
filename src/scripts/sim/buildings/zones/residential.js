@@ -9,8 +9,12 @@ export class ResidentialZone extends Zone {
    */
   residents = new ResidentsModule(this);
 
-  constructor(x, y) {
-    super(x, y);
+  /**
+   * @constructor
+   *    @param {import('../../../windowGlobal.js').WindowGlobal} aWindow
+   */
+  constructor(aWindow) {
+    super(aWindow);
     this.name = generateBuildingName();
     this.type = BuildingType.residential;
   }

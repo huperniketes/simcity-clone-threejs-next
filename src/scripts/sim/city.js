@@ -146,7 +146,7 @@ export class City extends THREE.Group {
     // If the tile doesnt' already have a building, place one there
     if (tile && !tile.building) {
       const bldgConstructor = buildingConstructor(buildingType);
-      var   bldg = new bldgConstructor(this.#window, x, y);
+      var   bldg = new bldgConstructor(this.#window);
 
       tile.setBuilding(bldg);
       tile.refreshView(this);

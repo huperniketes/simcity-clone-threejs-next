@@ -9,8 +9,12 @@ export class CommercialZone extends Zone {
    */
   jobs = new JobsModule(this);
 
-  constructor(x, y) {
-    super(x, y);
+  /**
+   * @constructor
+   *    @param {import('../../../windowGlobal.js').WindowGlobal} aWindow
+   */
+  constructor(aWindow) {
+    super(aWindow);
     this.name = generateBusinessName();
     this.type = BuildingType.commercial;
   }

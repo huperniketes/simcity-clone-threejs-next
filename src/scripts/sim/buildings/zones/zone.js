@@ -27,8 +27,8 @@ export class Zone extends Building {
    * @constructor
    *    @param {WindowGlobal} aWindow
    */
-  constructor(aWindow, x = 0, y = 0) {
-    super(aWindow, x, y);
+  constructor(aWindow) {
+    super(aWindow);
     this.#window = aWindow;
     this.name = 'Zone';
     this.power.required = 10;
