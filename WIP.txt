@@ -1,18 +1,18 @@
-Although this project now builds and runs on Vercel, the game isn't functional within Next yet. It only displays the grid and updates
-the info panel when grid tiles are selected.
+This project now builds and runs on Vercel, and the simulation functions within Next, albeit with some issues.
 
-Tool selection works in the menu, but isn't recognized by the Game instance. As a result, placing SimObjects doesn't work.
-Another note on SimObjects: subclasses have x/y coordinates as parameters but are ignored so should be deleted.
+It displays the grid and updates the info panel when grid tiles are selected.
+All the elements of class Building can be placed on the grid.
+Vehicles appear and move on roads.
 
-The createBuilding() factory function should be deleted if buildingConstructor() works correctly.
+That's it.
 
 Scrolling zooms in and out, but also scrolls up and down. That needs to stop.
-TypeScript complains when I use regular JS imports for type definitions, but JsDoc requires type defs to be imported repeatedly for
-the same types.
+Two games are created during development due to the React StrictMode meant to help you fix lifecycle bugs. Set "reactStrictMode" to false in next.config.js
 
-Unable to place objects on the grid.
 The Pause button doesn't work.
 Stubbed togglePause() function to squelch error.
+
+I added an initial JsDoc typedef which would import types to avoid importing the same types repeatedly.
 
 npm warns of these issues when installing locally:
 npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
