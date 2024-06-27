@@ -233,6 +233,8 @@ export class Game {
    * Uses the currently active tool
    */
   useTool() {
+    const { x, y } = this.focusedObject;
+
     switch (this.#window.ui.activeToolId) {
       case 'select':
         this.updateSelectedObject();
