@@ -39,7 +39,7 @@ export class Building extends SimObject {
   /**
    * @type {WindowGlobal}
    */
-  #window;
+  window;
 
   /**
    * @constructor
@@ -47,7 +47,7 @@ export class Building extends SimObject {
    */
   constructor(aWindow) {
     super();
-    this.#window = aWindow;
+    this.window = aWindow;
     this.#statusIcon.visible = false;
     this.#statusIcon.material = new THREE.SpriteMaterial({ depthTest: false })
     this.#statusIcon.layers.set(1);
@@ -64,11 +64,11 @@ export class Building extends SimObject {
       switch(status) {
         case BuildingStatus.NoPower:
           this.#statusIcon.visible = true;
-          this.#statusIcon.material.map = this.#window.assetManager.statusIcons[BuildingStatus.NoPower];
+          this.#statusIcon.material.map = this.window.assetManager.statusIcons[BuildingStatus.NoPower];
           break;
         case BuildingStatus.NoRoadAccess:
           this.#statusIcon.visible = true;
-          this.#statusIcon.material.map = this.#window.assetManager.statusIcons[BuildingStatus.NoRoadAccess];
+          this.#statusIcon.material.map = this.window.assetManager.statusIcons[BuildingStatus.NoRoadAccess];
           break;
         default:
           this.#statusIcon.visible = false;

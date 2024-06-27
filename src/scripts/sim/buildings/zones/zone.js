@@ -19,17 +19,11 @@ export class Zone extends Building {
   development = new DevelopmentModule(this);
 
   /**
-   * @type {WindowGlobal}
-   */
-  #window;
-
-  /**
    * @constructor
    *    @param {WindowGlobal} aWindow
    */
   constructor(aWindow) {
     super(aWindow);
-    this.#window = aWindow;
     this.name = 'Zone';
     this.power.required = 10;
     
@@ -49,7 +43,7 @@ export class Zone extends Building {
         break;
     }
 
-    let mesh = this.#window.assetManager.getModel(modelName, this);
+    let mesh = this.window.assetManager.getModel(modelName, this);
 
     // Tint building a dark color if it is abandoned
     if (this.development.state === DevelopmentState.abandoned) {

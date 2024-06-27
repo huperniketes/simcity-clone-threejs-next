@@ -15,17 +15,11 @@ export class PowerPlant extends Building {
   powerConsumed = 0;
 
   /**
-   * @type {WindowGlobal}
-   */
-  #window;
-
-  /**
    * @constructor
    *    @param {WindowGlobal} aWindow
    */
   constructor(aWindow) {
     super(aWindow);
-    this.#window = aWindow;
     this.type = BuildingType.powerPlant;
   }
 
@@ -42,7 +36,7 @@ export class PowerPlant extends Building {
   }
 
   refreshView() {
-    let mesh = this.#window.assetManager.getModel(this.type, this);
+    let mesh = this.window.assetManager.getModel(this.type, this);
     this.setMesh(mesh);
   }
 

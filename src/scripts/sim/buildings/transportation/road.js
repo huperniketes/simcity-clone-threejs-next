@@ -7,17 +7,11 @@ import { WindowGlobal } from '../../../windowGlobal.js'
 export class Road extends Building {
 
   /**
-   * @type {WindowGlobal}
-   */
-   #window;
-  
-  /**
    * @constructor
    *    @param {WindowGlobal} aWindow
    */
   constructor(aWindow) {
     super(aWindow);
-    this.#window = aWindow;
     this.type = 'road';
     this.name = 'Road';
     this.style = 'straight';
@@ -89,7 +83,7 @@ export class Road extends Building {
       this.rotation.y  = 90 * DEG2RAD;
     }
 
-    const mesh = this.#window.assetManager.getModel(`road-${this.style}`, this);
+    const mesh = this.window.assetManager.getModel(`road-${this.style}`, this);
     this.setMesh(mesh);
     city.vehicleGraph.updateTile(this.x, this.y, this);
   }
