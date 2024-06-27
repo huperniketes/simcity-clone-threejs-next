@@ -81,10 +81,13 @@ ToolMenu({clickHandler})
   function
   tellMe(e)
   {
+    const toolId = /** @type {string} */((/** @type {HTMLElement} */(e.target)).dataset.type);
 
     e.preventDefault();
-    setSelectedTool(e.target.dataset.type);
-    clickHandler && clickHandler(selectedTool);
+    if(toolId) {
+      setSelectedTool(toolId);
+      clickHandler && clickHandler(toolId);
+    }
   }
 
   return  (
