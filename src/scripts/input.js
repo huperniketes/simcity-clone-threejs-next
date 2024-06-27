@@ -36,10 +36,13 @@ export class InputManager {
    */
   constructor(aGameWindowRef) {
     this.#gameWindowRef = aGameWindowRef;
-    this.#gameWindowRef.current.addEventListener('mousedown', this.#onMouseDown.bind(this), false);
-    this.#gameWindowRef.current.addEventListener('mouseup', this.#onMouseUp.bind(this), false);
-    this.#gameWindowRef.current.addEventListener('mousemove', this.#onMouseMove.bind(this), false);
-    this.#gameWindowRef.current.addEventListener('contextmenu', (event) => event.preventDefault(), false);
+
+    const gameWindow = /** @type {HTMLDivElement} */(this.#gameWindowRef.current);
+
+    gameWindow.addEventListener('mousedown', this.#onMouseDown.bind(this), false);
+    gameWindow.addEventListener('mouseup', this.#onMouseUp.bind(this), false);
+    gameWindow.addEventListener('mousemove', this.#onMouseMove.bind(this), false);
+    gameWindow.addEventListener('contextmenu', (event) => event.preventDefault(), false);
   }
 
   /**
