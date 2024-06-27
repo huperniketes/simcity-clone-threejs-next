@@ -78,7 +78,7 @@ export class City extends THREE.Group {
     this.services = [];
     this.services.push(new PowerService());
     
-    this.vehicleGraph = new VehicleGraph(this.size);
+    this.vehicleGraph = new VehicleGraph(this.#window, this.size);
     this.debugMeshes.add(this.vehicleGraph);
   }
 

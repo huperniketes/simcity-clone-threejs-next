@@ -8,11 +8,18 @@ import { Road } from '../buildings/transportation/road.js';
 export class VehicleGraph extends THREE.Group {
 
   /**
+   * @property {WindowGlobal}
+   */
+  #window;
+
+  /**
    * @constructor
+   *   @param {WindowGlobal} aWindow
    * @param {number} size
    */
-  constructor(size) {
+  constructor(aWindow, size) {
     super();
+    this.#window = aWindow;
     this.size = size;
 
     /**
@@ -121,7 +128,7 @@ export class VehicleGraph extends THREE.Group {
       const destination = origin?.getRandomNextNode();
 
       if (origin && destination) {
-        const vehicle = new Vehicle(origin, destination);
+        const vehicle = new Vehicle(this.#window, origin, destination);
         this.vehicles.add(vehicle);
       }
     }
