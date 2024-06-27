@@ -3,8 +3,8 @@ import {SimObject} from '~/scripts/sim/simObject.js';
 
 /** @typedef {import('react').RefObject<HTMLDivElement>} DivRefObject */
 
-const playIconUrl = '/icons/play-color.png';
-const pauseIconUrl = '/icons/pause-color.png';
+const playIconUrl = '~/public/icons/play-color.png';
+const pauseIconUrl = '~/public/icons/pause-color.png';
 
 const fixedRenderViewSize = false;
 
