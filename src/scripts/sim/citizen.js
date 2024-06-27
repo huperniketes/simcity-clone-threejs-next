@@ -1,6 +1,8 @@
 import { CommercialZone } from './buildings/zones/commercial.js';
 import { IndustrialZone } from './buildings/zones/industrial.js';
 import { ResidentialZone } from './buildings/zones/residential.js';
+import { BuildingType } from './buildings/buildingType.js';
+import { City } from './city.js';
 import config from '../config.js';
 
 export class Citizen {
@@ -45,7 +47,7 @@ export class Citizen {
 
     /**
      * Reference to the building the citizen works at
-     * @type {CommercialZone | IndustrialZone}
+     * @type {?CommercialZone | ?IndustrialZone}
      */
     this.workplace = null;
 
@@ -67,7 +69,7 @@ export class Citizen {
 
   /**
    * Steps the state of the citizen forward in time by one simulation step
-   * @param {object} city 
+   * @param {City} city 
    */
   simulate(city) {
     switch (this.state) {
@@ -117,8 +119,8 @@ export class Citizen {
 
   /**
    * Search for a job nearby
-   * @param {object} city 
-   * @returns 
+   * @param {City} city 
+   * @returns {?IndustrialZone | ?CommercialZone}
    */
   #findJob(city) {
     const tile = city.findTile(this.residence, (tile) => {
@@ -144,7 +146,7 @@ export class Citizen {
 
   /**
    * Sets the workplace for the citizen
-   * @param {CommercialZone | IndustrialZone} workplace 
+   * @param {?CommercialZone | ?IndustrialZone} workplace 
    */
   setWorkplace(workplace) {
     this.workplace = workplace;

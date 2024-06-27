@@ -16,6 +16,9 @@ export class JobsModule extends SimModule {
    */
   workers = [];
 
+  /**
+   * @param {Zone} zone
+   */
   constructor(zone) {
     super();
     this.#zone = zone;

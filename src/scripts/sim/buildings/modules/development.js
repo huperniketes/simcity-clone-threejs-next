@@ -118,7 +118,6 @@ export class DevelopmentModule extends SimModule {
   }
 
   /**
-   * @param {City} city 
    * @returns 
    */
   #checkDevelopmentCriteria() {
@@ -129,7 +128,6 @@ export class DevelopmentModule extends SimModule {
   }
 
   /**
-   * @param {City} city 
    * @returns 
    */
   #checkAbandonmentCriteria() {

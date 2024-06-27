@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { RefObject } from 'react';
-import { WindowGlobal } from './windowGlobal.js';
+
+/** @typedef {import('./windowGlobal.js').WindowGlobal} WindowGlobal */
 
 // -- Constants --
 const DEG2RAD = Math.PI / 180.0;
@@ -96,7 +96,7 @@ export class CameraManager {
 
   /**
    * Event handler for `wheel` event
-   * @param {MouseEvent} event Mouse event arguments
+   * @param {WheelEvent} event Mouse event arguments
    */
   onMouseScroll(event) {
     this.cameraRadius *= 1 - (event.deltaY * ZOOM_SENSITIVITY);

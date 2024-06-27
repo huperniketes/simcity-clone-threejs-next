@@ -2,7 +2,6 @@ import * as THREE from 'three';
 
 export class VehicleGraphNode extends THREE.Object3D {
 
-
   /**
    * @constructor
    *    @param {number} x

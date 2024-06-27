@@ -10,7 +10,7 @@ import { SimModule } from './simModule.js';
  */
 export class ResidentsModule extends SimModule {
   /**
-   * @type {ResidentialZone}
+   * @property {ResidentialZone}
    */
   #zone;
 

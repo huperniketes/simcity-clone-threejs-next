@@ -3,7 +3,8 @@ import { VehicleGraphNode } from './vehicleGraphNode.js';
 import config from '../../config.js';
 import { SimObject } from '../simObject.js';
 import models from '../../assets/models.js';
-import { WindowGlobal } from '../../windowGlobal.js'
+
+/** @typedef {import('../../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 const FORWARD = new THREE.Vector3(1, 0, 0);
 
@@ -17,6 +18,8 @@ export class Vehicle extends SimObject {
   /**
    * @constructor
    *    @param {WindowGlobal} aWindow
+   *    @param {import('./vehicleGraphNode.js').VehicleGraphNode} origin
+   *    @param {import('./vehicleGraphNode.js').VehicleGraphNode} destination
    */
   constructor(aWindow, origin, destination) {
     super();

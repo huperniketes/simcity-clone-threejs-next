@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { Building } from '../building.js';
 import { BuildingType } from '../buildingType.js';
-import { WindowGlobal } from '../../../windowGlobal.js';
+
+/** @typedef {import('../../city.js').City} City */
+/** @typedef {import('../../../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 const Side = {
   Left: 'left',
@@ -24,6 +26,9 @@ export class PowerLine extends Building {
     this.roadAccess.enabled = false;
   }
 
+  /**
+   * @param {City} city 
+   */
   refreshView(city) {
     let group = new THREE.Group();
     
@@ -78,6 +83,12 @@ export class PowerLine extends Building {
   
   /**
    * Creates a new power line between the start/stop points
+   * @param {number} x1
+   * @param {number} y1
+   * @param {number} z1
+   * @param {number} x2
+   * @param {number} y2
+   * @param {number} z2
    * @returns 
    */
   #createPowerLine(x1, y1, z1, x2, y2, z2) {

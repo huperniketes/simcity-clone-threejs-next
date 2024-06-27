@@ -2,7 +2,9 @@ import * as THREE from 'three';
 import { DEG2RAD } from 'three/src/math/MathUtils.js';
 import { DevelopmentModule, DevelopmentState } from '../modules/development.js';
 import { Building } from '../building.js';
-import { WindowGlobal } from '../../../windowGlobal.js'
+
+/** @typedef {import('../../city.js').City} City */
+/** @typedef {import('../../../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 /**
  * Represents a zoned building such as residential, commercial or industrial

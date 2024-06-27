@@ -3,6 +3,8 @@ import { JobsModule } from '../modules/jobs.js';
 import { BuildingType } from '../buildingType.js';
 import { Zone } from './zone.js';
 
+/** @typedef {import('../../../windowGlobal.js').WindowGlobal} WindowGlobal */
+
 export class IndustrialZone extends Zone {
   /**
    * @type {JobsModule}
@@ -11,7 +13,7 @@ export class IndustrialZone extends Zone {
 
   /**
    * @constructor
-   *    @param {import('../../../windowGlobal.js').WindowGlobal} aWindow
+   *    @param {WindowGlobal} aWindow
    */
   constructor(aWindow) {
     super(aWindow);

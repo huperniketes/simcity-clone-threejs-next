@@ -1,6 +1,7 @@
 
-import {RefObject} from 'react';
 import {SimObject} from '~/scripts/sim/simObject.js';
+
+/** @typedef {import('react').RefObject<HTMLDivElement>} DivRefObject */
 
 const playIconUrl = '/icons/play-color.png';
 const pauseIconUrl = '/icons/pause-color.png';
@@ -24,13 +25,13 @@ export class GameUI {
   isPaused = false;
 
   /**
-   * @type {RefObject<HTMLDivElement>}
+   * @type {DivRefObject}
    */
   gameWindowRef;
 
   /**
    * @constructor
-   *   @param {RefObject<HTMLDivElement>} aGameWindow
+   *   @param {DivRefObject} aGameWindow
    */
   constructor(aGameWindow)
   {
@@ -62,7 +63,7 @@ export class GameUI {
     this.selectedControl.classList.add('selected');
 
     this.activeToolId = this.selectedControl.getAttribute('data-type');
-  }
+    }
 
   /**
    * Toggles the pause state of the game
@@ -70,11 +71,11 @@ export class GameUI {
   togglePause() {
     this.isPaused = !this.isPaused;
     if (this.isPaused) {
-      document.getElementById('pause-button-icon').src = playIconUrl;
-      document.getElementById('paused-text').style.visibility = 'visible';
+       document.getElementById('pause-button-icon').src = playIconUrl;
+       document.getElementById('paused-text').style.visibility = 'visible';
     } else {
-      document.getElementById('pause-button-icon').src = pauseIconUrl;
-      document.getElementById('paused-text').style.visibility = 'hidden';
+       document.getElementById('pause-button-icon').src = pauseIconUrl;
+       document.getElementById('paused-text').style.visibility = 'hidden';
     }
   }
 
@@ -93,7 +94,7 @@ export class GameUI {
 
   /**
    * Updates the info panel with the information in the object
-   * @param {SimObject} object 
+   * @param {?SimObject} object 
    */
   updateInfoPanel(object) {
     const infoElement = document.getElementById('info-panel')

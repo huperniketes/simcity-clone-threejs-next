@@ -5,8 +5,10 @@ import { InputManager } from './input.js';
 import { City } from './sim/city.js';
 import { SimObject } from './sim/simObject.js';
 import { GameUI } from './ui.js';
-import { WindowGlobal } from './windowGlobal.js'
-import { RefObject } from 'react';
+import {inspect} from 'util';
+
+/** @typedef {import('./windowGlobal.js').WindowGlobal} WindowGlobal */
+/** @typedef {import('react').RefObject<HTMLDivElement>} DivRefObject */
 
 /** 
  * Manager for the Three.js scene. Handles rendering of a `City` object
@@ -39,7 +41,7 @@ export class Game {
   #window;
 
   /**
-    * @type {RefObject<HTMLDivElement>} gameWindowRef
+    * @type {DivRefObject} gameWindowRef
     */
   #gameWindowRef;
   
@@ -47,7 +49,7 @@ export class Game {
    * @constructor
    *    @param {City} city
    *    @param {WindowGlobal} aWindow
-   *    @param {RefObject<HTMLDivElement>} aGameWindowRef
+   *    @param {DivRefObject} aGameWindowRef
    */
   constructor(city, aWindow, aGameWindowRef) {
     this.city = city;
@@ -280,11 +282,10 @@ export class Game {
   /**
    * Gets the mesh currently under the the mouse cursor. If there is nothing under
    * the the mouse cursor, returns null
-   * @param {MouseEvent} event Mouse event
-   * @returns {THREE.Mesh | null}
+   * @returns {SimObject | null}
    */
   #raycast() {
-    var divBoundingRect = this.#gameWindowRef.current?.getBoundingClientRect();
+      var divBoundingRect = this.#gameWindowRef.current?.getBoundingClientRect();
     var coords = {
       x:  ((this.inputManager.mouse.x - divBoundingRect.x) / this.renderer.domElement.clientWidth) * 2 - 1,
       y: -((this.inputManager.mouse.y - divBoundingRect.y) / this.renderer.domElement.clientHeight) * 2 + 1

@@ -47,7 +47,7 @@ export class VehicleGraphTile extends THREE.Group {
    * @param {number} x
    * @param {number} y
    * @param {number} rotation
-   * @param {string} style 
+   * @param {'end' | 'straight' | 'corner' | 'three-way' | 'four-way'} style 
    * @returns {VehicleGraphTile | null}
    */
   static create(x, y, rotation, style) {

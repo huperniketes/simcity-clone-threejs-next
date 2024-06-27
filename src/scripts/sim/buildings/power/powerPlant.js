@@ -1,6 +1,7 @@
 import { Building } from '../building.js';
 import { BuildingType } from '../buildingType.js';
-import { WindowGlobal } from '../../../windowGlobal.js'
+
+/** @typedef {import('../../../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 export class PowerPlant extends Building {
 

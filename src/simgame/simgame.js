@@ -3,7 +3,6 @@
 
 import { Game } from "~/scripts/game"
 import { GameUI } from "~/scripts/ui";
-import { SimObject } from '~/scripts/sim/simObject.js';
 import "../public/main.css";
 
 import {
@@ -33,9 +32,9 @@ selectMenuItem(event)
 /**
  * Builds a menu item component based on the parameters
  * @param {string} type
- * @param {StaticImport} imgSource
+ * @param {import("next/dist/shared/lib/get-img-props").StaticImport} imgSource
  * @param {boolean} isSelected
- * @param {MouseEventHandler} aParentFunction
+ * @param {import("react").MouseEventHandler<HTMLButtonElement>} aParentFunction
  * @returns {JSX.Element}
  */
 function
@@ -76,10 +75,13 @@ ToolMenu({clickHandler})
 {
   const [selectedTool, setSelectedTool] = useState("select");
 
+  /**
+   * @param {MouseEvent} e
+   */
   function
   tellMe(e)
   {
-    
+
     e.preventDefault();
     setSelectedTool(e.target.dataset.type);
     clickHandler && clickHandler(selectedTool);

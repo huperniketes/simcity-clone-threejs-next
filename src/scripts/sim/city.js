@@ -5,7 +5,9 @@ import { Tile } from './tile.js';
 import { VehicleGraph } from './vehicles/vehicleGraph.js';
 import { PowerService } from './services/power.js';
 import { SimService } from './services/simService.js';
-import { WindowGlobal } from '../windowGlobal.js'
+import { Road } from './buildings/transportation/road.js';
+
+/** @typedef {import('../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 export class City extends THREE.Group {
   /**
@@ -40,7 +42,7 @@ export class City extends THREE.Group {
   tiles = [];
   /**
    * 
-   * @param {VehicleGraph} size 
+   * @type {VehicleGraph} 
    */
   vehicleGraph;
 

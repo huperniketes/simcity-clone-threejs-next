@@ -3,7 +3,9 @@ import { VehicleGraphTile } from './vehicleGraphTile.js';
 import { VehicleGraphHelper } from './vehicleGraphHelper.js';
 import config from '../../config.js';
 import { Vehicle } from './vehicle.js';
-import { Road } from '../buildings/transportation/road.js';
+
+/** @typedef {import('../../windowGlobal.js').WindowGlobal} WindowGlobal */
+/** @typedef {import('../buildings/transportation/road.js').Road} Road */
 
 export class VehicleGraph extends THREE.Group {
 
@@ -15,7 +17,7 @@ export class VehicleGraph extends THREE.Group {
   /**
    * @constructor
    *   @param {WindowGlobal} aWindow
-   * @param {number} size
+   *   @param {number} size
    */
   constructor(aWindow, size) {
     super();
@@ -23,15 +25,18 @@ export class VehicleGraph extends THREE.Group {
     this.size = size;
 
     /**
-     * @type {VehicleGraphTile[][]}
+     * @property {(Array<Array<?VehicleGraphTile>>)}
      */
     this.tiles = [];
 
+    /**
+     * @property {THREE.Group}
+     */
     this.vehicles = new THREE.Group();
     this.add(this.vehicles);
   
     /**
-     * @type {VehicleGraphHelper}
+     * @property {VehicleGraphHelper}
      */
     this.helper = new VehicleGraphHelper();
     this.add(this.helper);
@@ -60,7 +65,7 @@ export class VehicleGraph extends THREE.Group {
    * 
    * @param {number} x
    * @param {number} y 
-   * @param {Road | null} road 
+   * @param {?Road} road 
    */
   updateTile(x, y, road) {
     const existingTile = this.getTile(x, y);
@@ -110,7 +115,7 @@ export class VehicleGraph extends THREE.Group {
   /**
    * @param {number} x 
    * @param {number} y 
-   * @returns {VehicleGraphTile}
+   * @returns {?VehicleGraphTile}
    */
   getTile(x, y) {
     if (x >= 0 && x < this.size && y >= 0 && y < this.size) {
@@ -136,7 +141,7 @@ export class VehicleGraph extends THREE.Group {
 
   /**
    * Gets a random tile for a vehicle to spawn at
-   * @returns {VehicleGraphTile | null}
+   * @returns {?VehicleGraphTile}
    */
   getStartingTile() {
     const tiles = [];

@@ -3,8 +3,9 @@ import { SimObject } from '../simObject';
 import { BuildingStatus } from './buildingStatus';
 import { PowerModule } from './modules/power';
 import { RoadAccessModule } from './modules/roadAccess';
-import { City } from '../city.js';
-import { WindowGlobal } from '../../windowGlobal.js'
+
+/** @typedef {import('../city.js').City} City */
+/** @typedef {import('../../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 export class Building extends SimObject {
   /**

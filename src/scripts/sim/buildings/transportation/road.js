@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { Building } from '../building.js';
 import { City } from '../../city.js';
 import { DEG2RAD } from 'three/src/math/MathUtils.js';
-import { WindowGlobal } from '../../../windowGlobal.js'
+/** @typedef {import('../../city.js').City} City */
+/** @typedef {import('../../../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 export class Road extends Building {
 

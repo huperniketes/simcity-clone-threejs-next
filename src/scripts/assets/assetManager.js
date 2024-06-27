@@ -2,7 +2,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import viteConfig from '~/simgame/simgame.config.js';
 import models from './models.js';
-import { SimObject } from '../sim/simObject.js';
+
+/** @typedef {import('../sim/simObject.js').SimObject} SimObject */
+import {inspect} from 'util';
 
 const baseUrl = viteConfig.base;
 
@@ -10,6 +12,9 @@ export class AssetManager {
   textureLoader = new THREE.TextureLoader();
   modelLoader = new GLTFLoader();
 
+  /**
+   * @property {Record<string, THREE.Texture>}
+   */
   textures = {
     'base': this.#loadTexture(`${baseUrl}textures/base.png`),
     'specular': this.#loadTexture(`${baseUrl}textures/specular.png`),
@@ -49,10 +54,10 @@ export class AssetManager {
    * @param {string} name The name of the mesh to retrieve
    * @param {SimObject} simObject The SimObject object that corresponds to this mesh
    * @param {boolean} transparent True if materials should be transparent. Default is false.
-   * @returns {THREE.Mesh}
+   * @returns {?THREE.Group}
    */
   getModel(name, simObject, transparent = false) {
-    /** @type THREE.Group */
+    /** @type {THREE.Group | undefined} */
     const mesh = this.models[name].clone();
 
     // Clone materials so each object has a unique material

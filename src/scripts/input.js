@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+/** @typedef {import('react').RefObject<HTMLDivElement>} DivRefObject */
 
 /** 
  * Manages mouse and keyboard input
@@ -6,7 +6,7 @@ import { RefObject } from 'react';
 export class InputManager {
   /**
    * Last mouse position
-   * @type {x: number, y: number}
+   * @type {{x: number, y: number}}
    */
   mouse = { x: 0, y: 0 };
   /**
@@ -26,13 +26,13 @@ export class InputManager {
   isRightMouseDown = false;
 
   /**
-   * @type {RefObject<HTMLDivElement>}
+   * @type {DivRefObject}
    */
   #gameWindowRef;
 
   /**
    * @constructor
-   *    @param {RefObject<HTMLDivElement>} aGameWindowRef
+   *    @param {DivRefObject} aGameWindowRef
    */
   constructor(aGameWindowRef) {
     this.#gameWindowRef = aGameWindowRef;

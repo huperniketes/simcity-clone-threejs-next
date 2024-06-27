@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import { Building } from './buildings/building.js';
 import { SimObject } from './simObject.js';
-import { WindowGlobal } from '../windowGlobal.js'
+
+/** @typedef {import('./city.js').City} City */
+/** @typedef {import('../windowGlobal.js').WindowGlobal} WindowGlobal */
 
 export class Tile extends SimObject {
   /**
@@ -11,7 +13,7 @@ export class Tile extends SimObject {
   terrain = 'grass';
   /**
    * The building on this tile
-   * @type {Building? | null}
+   * @type {?Building}
    */
   #building = null;
 
@@ -33,14 +35,15 @@ export class Tile extends SimObject {
   }
 
   /**
-   * @type {Building | null}
+   * @type {?Building}
    */
   get building() {
     return this.#building;
   }
 
   /**
-   * @param {Building | null} value
+   * @param {?Building} value
+   * @modifies {#building}
    */
   setBuilding(value) {
     // Remove and dispose resources for existing building
@@ -57,6 +60,9 @@ export class Tile extends SimObject {
     }
   }
 
+  /**
+   * @param {City} city 
+   */
   refreshView(city) {
     this.building?.refreshView(city);
     if (this.building?.hideTerrain) {
@@ -71,6 +77,9 @@ export class Tile extends SimObject {
     }
   }
 
+  /**
+   * @param {City} city 
+   */
   simulate(city) {
     this.building?.simulate(city);
   }

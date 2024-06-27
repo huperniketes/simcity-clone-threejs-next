@@ -1,12 +1,14 @@
 import * as THREE from 'three';
 import { SimModule } from './buildings/modules/simModule';
 
+/** @typedef {import('./city.js').City} City */
+
 const SELECTED_COLOR = 0xaaaa55;
 const HIGHLIGHTED_COLOR = 0x555555;
 
 export class SimObject extends THREE.Object3D {
   /**
-   * @type {THREE.Mesh?}
+   * @type {?THREE.Mesh}
    */
   #mesh = null;
   /**
@@ -37,14 +39,14 @@ export class SimObject extends THREE.Object3D {
   }
 
   /**
-   * @type {THREE.Mesh?}
+   * @type {?THREE.Mesh}
    */
   get mesh() {
     return this.#mesh;
   } 
 
   /**
-   * @type {THREE.Mesh} value
+   * @param {?THREE.Mesh} value
    */
   setMesh(value) {
     // Remove resources for existing mesh
@@ -69,6 +71,10 @@ export class SimObject extends THREE.Object3D {
     // Override in subclass
   }
 
+  /**
+   * 
+   * @param {boolean} value 
+   */
   setSelected(value) {
     if (value) {
       this.#setMeshEmission(SELECTED_COLOR);
@@ -77,6 +83,10 @@ export class SimObject extends THREE.Object3D {
     }
   }
 
+  /**
+   * 
+   * @param {boolean} value 
+   */
   setFocused(value) {
     if (value) {
       this.#setMeshEmission(HIGHLIGHTED_COLOR);
@@ -90,7 +100,7 @@ export class SimObject extends THREE.Object3D {
    * @param {number} color 
    */
   #setMeshEmission(color) {
-    if (!this.mesh) return;
+    if (!this.mesh)  return; 
     this.mesh.traverse((obj) => obj.material?.emissive?.setHex(color));
   }
 
