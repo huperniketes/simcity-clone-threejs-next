@@ -31,7 +31,7 @@ export class VehicleGraphHelper extends THREE.Group {
         if (!tile) continue;
 
         for (const node of tile.children) {
-          this.createNodeVisualization(node);
+          this.createNodeVisualization(/** @type {VehicleGraphNode} */ (node));
         }
       }
     }

@@ -58,8 +58,10 @@ export class AssetManager {
    */
   getModel(name, simObject, transparent = false) {
     /** @type {THREE.Group | undefined} */
-    const mesh = this.models[name].clone();
+    const mesh = this.models[name]?.clone();
 
+    if(!mesh)
+        return  (null);
     // Clone materials so each object has a unique material
     // This is so we can set the modify the texture of each
     // mesh independently (e.g. highlight on mouse over,

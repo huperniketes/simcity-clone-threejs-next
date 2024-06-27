@@ -110,10 +110,10 @@ export class Citizen {
    */
   dispose() {
     // Remove resident from its  workplace
-    const workerIndex = this.workplace?.jobs.workers.indexOf(this);
+    const workerIndex = this.workplace?.jobs.workers.indexOf(this) ?? -1;
 
-    if (workerIndex !== undefined && workerIndex > -1) {
-      this.workplace.jobs.workers.splice(workerIndex);
+    if (workerIndex > -1) {
+      this.workplace?.jobs.workers.splice(workerIndex);
     }
   }
 
@@ -125,8 +125,8 @@ export class Citizen {
   #findJob(city) {
     const tile = city.findTile(this.residence, (tile) => {
       // Search for an industrial or commercial building with at least one available job
-      if (tile.building?.type === 'industrial' || 
-          tile.building?.type === 'commercial') {
+      if (tile.building instanceof IndustrialZone || 
+          tile.building instanceof CommercialZone) {
         if (tile.building.jobs.availableJobs > 0) {
           return true;
         }
@@ -136,9 +136,11 @@ export class Citizen {
     }, config.citizen.maxJobSearchDistance);
 
     if (tile) {
+      const jobsBuilding = /** @type {IndustrialZone|CommercialZone} */(tile.building);
+
       // Employ the citizen at the building
-      tile.building.jobs.workers.push(this);
-      return tile.building;
+      jobsBuilding.jobs.workers.push(this);
+      return (jobsBuilding);
     } else {
       return null;
     }

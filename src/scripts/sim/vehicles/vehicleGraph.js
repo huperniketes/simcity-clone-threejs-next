@@ -57,7 +57,7 @@ export class VehicleGraph extends THREE.Group {
 
   updateVehicles() {
     for (const vehicle of this.vehicles.children) {
-      vehicle.simulate();
+      /** @type {Vehicle} */(vehicle).simulate();
     }
   }
 
@@ -156,7 +156,7 @@ export class VehicleGraph extends THREE.Group {
       return null;
     } else {
       const i = Math.floor(tiles.length * Math.random());
-      return tiles[i];
+      return  (tiles[i] ?? null);
     }
   }
 }

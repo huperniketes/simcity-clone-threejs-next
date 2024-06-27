@@ -53,7 +53,7 @@ export class ResidentsModule extends SimModule {
     } else if (this.#zone.development.state === DevelopmentState.developed) {
       // Move in new residents if there is room
       if (this.#residents.length < this.maximum && Math.random() < config.modules.residents.residentMoveInChance) {
-        this.#residents.push(new Citizen(this.#zone));
+        this.#residents.push(new Citizen( /** @type {ResidentialZone} */(this.#zone) ));
       }
     }
 

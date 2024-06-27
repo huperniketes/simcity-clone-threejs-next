@@ -128,7 +128,7 @@ export class City extends THREE.Group {
       // Update each building
       for (let x = 0; x < this.size; x++) {
         for (let y = 0; y < this.size; y++) {
-          this.getTile(x, y).simulate(this);
+          this.getTile(x, y)?.simulate(this);
         }
       }
     }
@@ -160,7 +160,7 @@ export class City extends THREE.Group {
       this.getTile(x, y - 1)?.refreshView(this);
       this.getTile(x, y + 1)?.refreshView(this);
 
-      if (tile.building.type === BuildingType.road) {
+      if (/** @type {unknown} */ (tile.building) instanceof Road) {
         this.vehicleGraph.updateTile(x, y, tile.building);
       }
     }

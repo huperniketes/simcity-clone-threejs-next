@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { VehicleGraphNode } from './vehicleGraphNode.js';
 import { RAD2DEG } from 'three/src/math/MathUtils.js';
 
+/** @typedef {import('../buildings/transportation/road.js').RoadStyle} RoadStyle */
+
 const roadOffset = 0.05;
 const tileOffset = 0.25;
 
@@ -65,6 +67,7 @@ export class VehicleGraphTile extends THREE.Group {
       default:
         console.error(`Road type ${style} is not a known value`);
     }
+    return  (null);
   }
 
   /**

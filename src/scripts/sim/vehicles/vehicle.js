@@ -124,7 +124,7 @@ export class Vehicle extends SimObject {
 
   pickNewDestination() {
     this.origin = this.destination;
-    this.destination = this.origin?.getRandomNextNode();
+    this.destination = this.origin?.getRandomNextNode() ?? this.destination;
     this.updateWorldPositions();
     this.cycleStartTime = Date.now();
   }

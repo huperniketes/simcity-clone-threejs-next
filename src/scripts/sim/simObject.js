@@ -101,15 +101,15 @@ export class SimObject extends THREE.Object3D {
    */
   #setMeshEmission(color) {
     if (!this.mesh)  return; 
-    this.mesh.traverse((obj) => obj.material?.emissive?.setHex(color));
+    this.mesh.traverse((obj) => /** @type {THREE.Mesh} */ (obj).material?.emissive?.setHex(color));
   }
 
   /**
    * Handles any clean up needed before an object is removed
    */
   dispose() {
-    this.#mesh.traverse((obj) => {
-      if (obj.material) {
+    this.#mesh?.traverse((obj) => {
+      if (/** @type {THREE.Mesh} */ (obj).material) {
         obj.material?.dispose();
       }
     })

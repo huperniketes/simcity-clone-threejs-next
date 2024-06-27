@@ -103,7 +103,7 @@ ToolMenu({clickHandler})
 function
 SimGame()
 {
-  const [game, setGame] = useState(/** @param {Game} */ null);
+  const [game, setGame] = useState(/** @type {Game} */ (/** @type {unknown} */(null)));
   const renderRef = useRef(/** @type{HTMLDivElement} */null);
 
   useEffect(() => {

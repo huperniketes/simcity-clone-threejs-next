@@ -27,7 +27,7 @@ export class CommercialZone extends Zone {
    */
   simulate(city) {
     super.simulate(city);
-    this.jobs.simulate();
+    this.jobs.simulate(city);
   }
 
   /**

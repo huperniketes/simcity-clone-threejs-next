@@ -51,7 +51,7 @@ export class CameraManager {
 
     this.updateCameraPosition();
 
-    const gameWindow = this.#window.ui.gameWindowRef.current;
+    const gameWindow = /** @type {HTMLDivElement} */(this.#window.ui.gameWindowRef.current);
     gameWindow.addEventListener('wheel', this.onMouseScroll.bind(this), false);
     gameWindow.addEventListener('mousedown', this.onMouseMove.bind(this), false);
     gameWindow.addEventListener('mousemove', this.onMouseMove.bind(this), false);

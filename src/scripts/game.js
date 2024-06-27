@@ -235,7 +235,7 @@ export class Game {
    * Uses the currently active tool
    */
   useTool() {
-    const { x, y } = this.focusedObject;
+    const { x, y } = /** @type {SimObject} */ (this.focusedObject);
 
     switch (this.#window.ui.activeToolId) {
       case 'select':
@@ -286,17 +286,17 @@ export class Game {
    */
   #raycast() {
       var divBoundingRect = this.#gameWindowRef.current?.getBoundingClientRect();
-    var coords = {
-      x:  ((this.inputManager.mouse.x - divBoundingRect.x) / this.renderer.domElement.clientWidth) * 2 - 1,
-      y: -((this.inputManager.mouse.y - divBoundingRect.y) / this.renderer.domElement.clientHeight) * 2 + 1
-    };
+    var coords = new THREE.Vector2(
+        ((this.inputManager.mouse.x - divBoundingRect.x) / this.renderer.domElement.clientWidth) * 2 - 1,
+       -((this.inputManager.mouse.y - divBoundingRect.y) / this.renderer.domElement.clientHeight) * 2 + 1
+    );
 
     this.raycaster.setFromCamera(coords, this.cameraManager.camera);
 
-    let intersections = this.raycaster.intersectObjects(this.city.root.children, true);
+    let intersections = this.raycaster.intersectObjects(this.city.root.children, true) ?? [];
     if (intersections.length > 0) {
       // The SimObject attached to the mesh is stored in the user data
-      const selectedObject = intersections[0].object.userData;
+      const selectedObject = /** @type {SimObject} */ (intersections[0].object.userData);
       return selectedObject;
     } else {
       return null;
@@ -309,7 +309,7 @@ export class Game {
   onResize() {
     const viewSize = this.#window.ui.viewSize;
 
-    this.cameraManager.resize(viewSize.width, viewSize.height);
+    this.cameraManager.resize();
     this.renderer.setSize(viewSize.width, viewSize.height);
   }
 }
